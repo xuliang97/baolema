@@ -11,4 +11,9 @@ public interface ManagerService {
     List<Manager> selectAll();
     Manager selectByID(Integer id);
 
+    boolean update(Manager manager);
+    boolean save(Manager manager);
+
+    boolean deleteByID(Integer id);
+
 }

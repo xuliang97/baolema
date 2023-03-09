@@ -25,4 +25,21 @@ public class ManagerServiceImp implements ManagerService {
     public Manager selectByID(Integer id) {
         return managerDao.selectByID(id);
     }
+
+    @Override
+    public boolean update(Manager manager) {
+        return managerDao.update(manager)>0;
+    }
+
+    @Override
+    public boolean save(Manager manager) {
+        return managerDao.save(manager)>0;
+    }
+
+    @Override
+    public boolean deleteByID(Integer id) {
+        return managerDao.deleteByID(id)>0;
+    }
+
+
 }

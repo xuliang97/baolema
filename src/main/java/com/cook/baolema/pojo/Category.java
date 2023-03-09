@@ -18,6 +18,5 @@ public class Category {
     private Integer categoryID;
     private String category;
     private String description;
-    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:SS")
     private Date createdTime;
 }

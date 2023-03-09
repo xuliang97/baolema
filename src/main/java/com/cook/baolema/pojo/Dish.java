@@ -22,6 +22,5 @@ public class Dish {
     private String description;
     private float price;
     private Integer Inventory;
-    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:SS")
     private Date createdTime;
 }

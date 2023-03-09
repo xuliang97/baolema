@@ -18,6 +18,5 @@ public class Announcement {
     private Integer announcementID;
     private Integer status;
     private String url;
-    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:SS")
     private Date createdTime;
 }

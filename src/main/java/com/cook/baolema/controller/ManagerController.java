@@ -27,6 +27,7 @@ public class ManagerController {
 
     @PostMapping
     public String save(@RequestBody Manager manager){
+        System.out.println(manager);
         boolean flag = managerService.save(manager);
         if(flag){
             return "添加管理员成功！";

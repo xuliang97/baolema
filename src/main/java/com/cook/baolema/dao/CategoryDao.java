@@ -33,7 +33,7 @@ public interface CategoryDao {
     * 修改菜品类别信息
     * */
     @Update("update tb_category set category=#{category},description=#{description},createdTime=#{createdTime} where categoryID=#{categoryID}")
-    int update(Category category);
+    int update(Category newCategory);
 
     /*
     * 删除菜品类别

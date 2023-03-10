@@ -32,7 +32,7 @@ public interface DishDao {
     * 修改菜品信息
     * */
     @Update("update tb_dish set dish=#{dish},categoryID=#{categoryID},dishPhoto=#{dishPhoto},description=#{description},price=#{price},Inventory=#{Inventory} where dishID=#{dishID}")
-    int update(Dish dish);
+    int update(Dish newDish);
 
     /*
     * 删除菜品

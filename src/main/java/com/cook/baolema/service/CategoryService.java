@@ -12,6 +12,6 @@ public interface CategoryService{
     public List<Category> selectAll();
     public Category selectByID(Integer id);
     public boolean deleteByID(Integer id);
-    public boolean update(Dish dish);
-    public boolean save(Dish dish);
+    public boolean update(Category category);
+    public boolean save(Category category);
 }

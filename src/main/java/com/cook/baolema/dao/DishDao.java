@@ -26,7 +26,7 @@ public interface DishDao {
     增加or保存菜品
     * */
     @Insert("insert into tb_dish values (null,#{dish},#{categoryID},#{dishPhoto},#{description},#{price},#{Inventory},#{createdTime})")
-    int save(Dish dish);
+    int save(Dish newDish);
 
     /*
     * 修改菜品信息

@@ -8,12 +8,12 @@ import java.util.Date;
 /**
  * @author 徐亮
  */
+
+
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@ToString
-@Setter
-@Getter
+
 public class Manager {
     private Integer managerID;
     private String manager;

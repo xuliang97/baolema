@@ -11,9 +11,7 @@ import java.util.Date;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@ToString
-@Setter
-@Getter
+
 public class Category {
     private Integer categoryID;
     private String category;

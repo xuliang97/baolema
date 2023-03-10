@@ -27,7 +27,7 @@ public interface CategoryDao {
     增加or保存菜品类别
     * */
     @Insert("insert into tb_category values (null,#{category},#{description},#{createdTime})")
-    int save(Category category);
+    int save(Category newCategory);
 
     /*
     * 修改菜品类别信息

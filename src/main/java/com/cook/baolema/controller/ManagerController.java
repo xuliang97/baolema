@@ -1,11 +1,14 @@
 package com.cook.baolema.controller;
 
+import com.cook.baolema.pojo.Code;
 import com.cook.baolema.pojo.Manager;
+import com.cook.baolema.pojo.Result;
 import com.cook.baolema.service.ManagerService;
 import org.apache.ibatis.annotations.Delete;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -17,42 +20,43 @@ public class ManagerController {
     @Autowired
     private ManagerService managerService;
     @GetMapping
-    public List<Manager> selectAll(){
-        return managerService.selectAll();
+    public Result selectAll(){
+        List<Manager> managers = managerService.selectAll();
+        Integer code = managers != null ? Code.GET_OK : Code.GET_ERR;
+        String msg = managers != null ? "" : "数据查询失败，请重试！";
+        return new Result(code, managers, msg);
     }
     @GetMapping("/{id}")
-    public Manager selectByID(@PathVariable("id") Integer id){
-        return managerService.selectByID(id);
+    public Result selectByID(@PathVariable("id") Integer id){
+
+        Manager manager = managerService.selectByID(id);
+        Integer code = manager != null ? Code.GET_OK : Code.GET_ERR;
+        String msg = manager != null ? "" : "数据查询失败，请重试！";
+        return new Result(code, manager, msg);
     }
 
     @PostMapping
-    public String save(@RequestBody Manager manager){
-        System.out.println(manager);
+    public Result save(@RequestBody Manager manager){
+        if(manager.getProfilePhoto() == null){
+            manager.setProfilePhoto("static/customer.jpg");
+        }
+        manager.setCreatedTime(new Date());
         boolean flag = managerService.save(manager);
-        if(flag){
-            return "添加管理员成功！";
-        }else{
-            return "添加管理员失败！";
-        }
+        return new Result(flag ? Code.SAVE_OK : Code.SAVE_ERR, flag, flag ? "删除成功！" : "删除失败！");
+
     }
 
-    @PutMapping
-    public String update(@RequestBody Manager manager){
+    @PostMapping("/update")
+    public Result update(@RequestBody Manager manager){
         boolean flag = managerService.update(manager);
-        if(flag){
-            return "修改成功！";
-        }else{
-            return "修改失败！";
-        }
+        return new Result(flag ? Code.UPDATE_OK : Code.UPDATE_ERR, flag, flag ? "修改成功！" : "修改失败！");
+
     }
 
-    @DeleteMapping("/{id}")
-    public String deleteByID(@PathVariable Integer id){
+    @GetMapping("/delete/{id}")
+    public Result deleteByID(@PathVariable Integer id){
         boolean flag = managerService.deleteByID(id);
-        if(flag){
-            return "删除成功！";
-        }else{
-            return "删除失败！";
-        }
+        return new Result(flag ? Code.DELETE_OK : Code.DELETE_ERR, flag, flag ? "删除成功！" : "删除失败！");
+
     }
 }

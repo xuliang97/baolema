@@ -1,10 +1,13 @@
 package com.cook.baolema.controller;
 
+import com.cook.baolema.pojo.Code;
 import com.cook.baolema.pojo.Dish;
+import com.cook.baolema.pojo.Result;
 import com.cook.baolema.service.DishService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -16,35 +19,40 @@ public class DishController {
     @Autowired
     private DishService dishService;
     @GetMapping
-    public List<Dish> selectAll(){
-        return dishService.selectAll();
+    public Result selectAll(){
+
+        List<Dish> dishes = dishService.selectAll();
+        Integer code = dishes != null ? Code.GET_OK : Code.GET_ERR;
+        String msg = dishes != null ? "" : "数据查询失败，请重试！";
+        return new Result(code, dishes, msg);
     }
     @GetMapping("/{id}")
-    public Dish selectByID(@PathVariable Integer id){
-        return dishService.selectByID(id);
+    public Result selectByID(@PathVariable Integer id){
+        Dish dish = dishService.selectByID(id);
+        Integer code = dish != null ? Code.GET_OK : Code.GET_ERR;
+        String msg = dish != null ? "" : "数据查询失败，请重试！";
+        return new Result(code, dish, msg);
     }
     @PostMapping
-    public String save(@RequestBody Dish dish){
+    public Result save(@RequestBody Dish dish){
+        dish.setCreatedTime(new Date());
+        if(dish.getDishPhoto() == null){
+            dish.setDishPhoto("static/dish.jpg");
+        }
         boolean flag = dishService.save(dish);
-        if(flag)
-            return "添加菜品成功！";
-        else
-            return "添加菜品失败！";
+        return new Result(flag ? Code.SAVE_OK : Code.SAVE_ERR, flag, flag ? "保存成功！" : "保存失败！");
+
     }
-    @PutMapping
-    public String update(@RequestBody Dish dish){
+    @PostMapping("/update")
+    public Result update(@RequestBody Dish dish){
         boolean flag = dishService.update(dish);
-        if(flag)
-            return "修改菜品成功！";
-        else
-            return "修改菜品失败！";
+        return new Result(flag ? Code.UPDATE_OK : Code.UPDATE_ERR, flag, flag ? "修改成功！" : "修改失败！");
+
     }
-    @DeleteMapping("/{id}")
-    public String deleteByID(@PathVariable Integer id){
+    @GetMapping("/delete/{id}")
+    public Result deleteByID(@PathVariable Integer id){
         boolean flag = dishService.deleteByID(id);
-        if(flag)
-            return "删除成功！";
-        else
-            return "删除失败！";
+        return new Result(flag ? Code.DELETE_OK : Code.DELETE_ERR, flag, flag ? "删除成功！" : "删除失败！");
+
     }
 }

@@ -1,7 +1,10 @@
 package com.cook.baolema.controller;
 
 import com.cook.baolema.pojo.Announcement;
+import com.cook.baolema.pojo.Result;
+import com.cook.baolema.pojo.Code;
 import com.cook.baolema.service.AnnouncementService;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -20,42 +23,40 @@ public class AnnouncementController {
     private AnnouncementService announcementService;
 
     @GetMapping
-    public List<Announcement> selectAll(){
-        return announcementService.selectAll();
+    public Result selectAll() {
+        List<Announcement> announcements = announcementService.selectAll();
+        Integer code = announcements != null ? Code.GET_OK : Code.GET_ERR;
+        String msg = announcements != null ? "" : "数据查询失败，请重试！";
+        return new Result(code, announcements, msg);
     }
 
     @GetMapping("/{id}")
-    public Announcement selectByID(@PathVariable Integer id){
-        return announcementService.selectByID(id);
+    public Result selectByID(@PathVariable Integer id) {
+        Announcement announcement = announcementService.selectByID(id);
+        Integer code = announcement != null ? Code.GET_OK : Code.GET_ERR;
+        String msg = announcement != null ? "" : "数据查询失败，请重试！";
+        return new Result(code, announcement, msg);
+
     }
 
     @PostMapping
-    public String save(@RequestBody Announcement announcement){
+    public Result save(@RequestBody Announcement announcement) {
 //        System.out.println(announcement);
         announcement.setCreatedTime(new Date());
         boolean flag = announcementService.save(announcement);
-        if(flag)
-            return "保存成功！";
-        else
-            return "保存失败！";
+        return new Result(flag ? Code.SAVE_OK : Code.SAVE_ERR, flag, flag ? "保存成功！" : "保存失败！");
+
     }
 
-    @DeleteMapping("/{id}")
-    public String deleteByID(@PathVariable Integer id){
+    @GetMapping("/delete/{id}")
+    public Result deleteByID(@PathVariable Integer id) {
         boolean flag = announcementService.deleteByID(id);
-        if(flag)
-            return "删除成功！";
-        else
-            return "删除失败！";
+        return new Result(flag ? Code.DELETE_OK : Code.DELETE_ERR, flag, flag ? "删除成功！" : "删除失败！");
     }
 
-    @PutMapping
-    public String update(@RequestBody Announcement announcement){
-
+    @PostMapping("/update")
+    public Result update(@RequestBody Announcement announcement) {
         boolean flag = announcementService.update(announcement);
-        if(flag)
-            return "更新成功！";
-        else
-            return "更新失败！";
+        return new Result(flag ? Code.UPDATE_OK : Code.UPDATE_ERR, flag, flag ? "更新成功！" : "更新失败！");
     }
 }

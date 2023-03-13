@@ -26,7 +26,7 @@ public class SmsService {
         request.putQueryParameter("RegionId", "cn-hangzhou");
         request.putQueryParameter("PhoneNumbers", phone);
         request.putQueryParameter("SignName", "邹伟个人博客");//短信签名
-        request.putQueryParameter("TemplateCode", "SMS_273355088");
+        request.putQueryParameter("TemplateCode", "SMS_273660025");
         request.putQueryParameter("TemplateParam","{\"code\":\""+key+"\"}");//code阿里云模板只有一个短信参数
         try {
             CommonResponse response = client.getCommonResponse(request);

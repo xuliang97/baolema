@@ -2,21 +2,21 @@ package com.cook.baolema.pojo;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.*;
-
 import java.util.Date;
 
-/**
- * @author 徐亮
- */
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @ToString
 @Setter
 @Getter
-public class Announcement {
-    private Integer announcementID;
-    private Short status;
-    private String url;
+public class Chef {
+    private Integer chefID;
+    private String chef;
+    private String gender;
+    private String profilePhoto;
+    private String phoneNumber;
+    private String password;
     private Date createdTime;
+    private Float performance;
 }

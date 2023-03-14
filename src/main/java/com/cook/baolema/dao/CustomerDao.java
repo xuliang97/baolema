@@ -1,6 +1,7 @@
 package com.cook.baolema.dao;
 
 import com.cook.baolema.pojo.Customer;
+import com.cook.baolema.pojo.Manager;
 import org.apache.ibatis.annotations.*;
 
 import java.util.List;
@@ -21,4 +22,12 @@ public interface CustomerDao {
 
     @Delete("delete from tb_customer where customerID=#{id}")
     int deleteByID(Integer id);
+
+    @Select("select * from tb_customer where phoneNumber=#{phoneNumber} and password=#{password}")
+    Customer selectByPhoneAndPwd(@Param("phoneNumber")String phoneNumber, @Param("password")String password);
+
+
+    @Select("select * from tb_customer where phoneNumber=#{phoneNumber}")
+    Customer selectByPhoneNumber(String phoneNumber);
+
 }

@@ -42,7 +42,7 @@ public class ManagerController {
         }
         manager.setCreatedTime(new Date());
         boolean flag = managerService.save(manager);
-        return new Result(flag ? Code.SAVE_OK : Code.SAVE_ERR, flag, flag ? "删除成功！" : "删除失败！");
+        return new Result(flag ? Code.SAVE_OK : Code.SAVE_ERR, flag, flag ? "保存成功！" : "保存失败！");
 
     }
 

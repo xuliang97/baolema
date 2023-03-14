@@ -37,4 +37,9 @@ public class ChefServiceImp implements ChefService {
     public boolean deleteByID(Integer id) {
         return chefDao.deleteByID(id)>0;
     }
+
+    @Override
+    public Chef selectByPhoneAndPwd(String phoneNumber, String password) {
+        return chefDao.selectByPhoneAndPwd(phoneNumber,password);
+    }
 }

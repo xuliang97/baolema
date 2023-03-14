@@ -1,6 +1,7 @@
 package com.cook.baolema.service;
 
 import com.cook.baolema.pojo.Manager;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
@@ -15,5 +16,8 @@ public interface ManagerService {
     boolean save(Manager manager);
 
     boolean deleteByID(Integer id);
+
+    Manager selectByPhoneNumber(String phoneNumber);
+    Manager selectByPhoneAndPwd(String phoneNumber, String password);
 
 }

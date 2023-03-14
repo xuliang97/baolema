@@ -1,5 +1,6 @@
 package com.cook.baolema.dao;
 
+import com.alibaba.druid.sql.dialect.mysql.ast.statement.MySqlManageInstanceGroupStatement;
 import com.cook.baolema.pojo.Manager;
 import org.apache.ibatis.annotations.*;
 import org.springframework.stereotype.Repository;
@@ -36,4 +37,15 @@ public interface ManagerDao {
 
     @Delete("delete from tb_manager where managerID=#{id}")
     int deleteByID(Integer id);
+
+    /*
+    * 按手机号查询数据
+    * */
+    @Select("select * from tb_manager where phoneNumber=#{phoneNumber}")
+    Manager selectByPhoneNumber(String phoneNumber);
+
+    /*
+    * 根据手机号密码查询*/
+    @Select("select * from tb_manager where phoneNumber=#{phoneNumber} and password=#{password}")
+    Manager selectByPhoneAndPwd(@Param("phoneNumber")String phoneNumber,@Param("password")String password);
 }

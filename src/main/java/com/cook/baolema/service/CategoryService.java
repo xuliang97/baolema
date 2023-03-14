@@ -1,7 +1,7 @@
 package com.cook.baolema.service;
 
 import com.cook.baolema.pojo.Category;
-import com.cook.baolema.pojo.Dish;
+
 
 import java.util.List;
 
@@ -14,4 +14,6 @@ public interface CategoryService{
     public boolean deleteByID(Integer id);
     public boolean update(Category category);
     public boolean save(Category category);
+
+
 }

@@ -55,4 +55,12 @@ public class DishController {
         return new Result(flag ? Code.DELETE_OK : Code.DELETE_ERR, flag, flag ? "删除成功！" : "删除失败！");
 
     }
+    @GetMapping("/bycategory/{categoryID}")
+     public Result selectByCategoryID(@PathVariable Integer categoryID){
+        List<Dish> dishes = dishService.selectByCategoryID(categoryID);
+        Integer code = dishes != null ? Code.GET_OK : Code.GET_ERR;
+        String msg = dishes != null ? "" : "数据查询失败，请重试！";
+        return new Result(code, dishes, msg);
+    }
+
 }

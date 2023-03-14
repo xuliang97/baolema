@@ -39,4 +39,9 @@ public class DishServiceImp implements DishService {
     public boolean save(Dish dish) {
         return dishDao.save(dish)>0;
     }
+
+    @Override
+    public List<Dish> selectByCategoryID(Integer categoryID) {
+        return dishDao.selectByCategoryID(categoryID);
+    }
 }

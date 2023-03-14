@@ -39,4 +39,10 @@ public interface DishDao {
     * */
     @Delete("delete from tb_dish where dishID=#{id}")
     int deleteByID(Integer id);
+
+    /*
+    * 根据类别查询菜品
+    * */
+    @Select("select * from tb_dish where categoryID=#{categoryID}")
+    List<Dish> selectByCategoryID(Integer categoryID);
 }

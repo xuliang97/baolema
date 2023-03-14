@@ -2,6 +2,7 @@ package com.cook.baolema.service.imps;
 
 import com.cook.baolema.dao.CategoryDao;
 import com.cook.baolema.pojo.Category;
+
 import com.cook.baolema.service.CategoryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -39,4 +40,8 @@ public class CategoryServiceImp implements CategoryService {
     public boolean save(Category category) {
         return categoryDao.save(category)>0;
     }
+
+
+
+
 }

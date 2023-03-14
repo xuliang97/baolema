@@ -18,7 +18,7 @@ public class Dish {
     private Integer categoryID;
     private String dishPhoto;
     private String description;
-    private float price;
+    private Float price;
     private Integer Inventory;
     private Date createdTime;
 }

@@ -6,9 +6,9 @@ import com.cook.baolema.pojo.Chef;
 import java.util.List;
 
 public interface ChefService {
-    List<Chef> selectAll();
-    Chef selectByID(Integer id);
-    boolean update(Chef chef);
-    boolean save(Chef chef);
-    boolean deleteByID(Integer id);
+    public List<Chef> selectAll();
+    public Chef selectByID(Integer id);
+    public boolean update(Chef chef);
+    public boolean save(Chef chef);
+    public boolean deleteByID(Integer id);
 }

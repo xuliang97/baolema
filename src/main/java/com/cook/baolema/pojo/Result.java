@@ -10,14 +10,14 @@ import lombok.NoArgsConstructor;
  */
 @Data
 @NoArgsConstructor
-@AllArgsConstructor
 public class Result {
     private Integer code;//存放返回数据状态码
     private Object data;//存放返回数据
     private String msg;//存放消息
 
-    public Result(Integer code, Object data) {
+    public Result(Integer code, Object data, String msg) {
         this.code = code;
         this.data = data;
+        this.msg = msg;
     }
 }

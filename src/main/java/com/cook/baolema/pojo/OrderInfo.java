@@ -7,9 +7,7 @@ import java.util.Date;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@ToString
-@Setter
-@Getter
+
 public class OrderInfo {
     private Integer orderID;
     private Integer customerID;

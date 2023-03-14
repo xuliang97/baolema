@@ -7,11 +7,11 @@ import org.apache.ibatis.annotations.Param;
 import java.util.List;
 
 public interface ChefService {
+
     List<Chef> selectAll();
     Chef selectByID(Integer id);
     boolean update(Chef chef);
     boolean save(Chef chef);
     boolean deleteByID(Integer id);
     Chef selectByPhoneAndPwd(String phoneNumber,String password);
-
 }

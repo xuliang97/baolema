@@ -4,6 +4,11 @@ import java.util.Random;
 
 public class RandomNumberGenerator {
 
+    /**
+     *
+     * @param n 生成随机数的位数，最好是4-6位;
+     * @return
+     */
         public static int getRandomNumber(int n) {
             // 生成n位随机数
             Random rand = new Random();

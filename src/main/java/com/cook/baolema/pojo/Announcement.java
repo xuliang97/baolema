@@ -11,9 +11,7 @@ import java.util.Date;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@ToString
-@Setter
-@Getter
+
 public class Announcement {
     private Integer announcementID;
     private Short status;

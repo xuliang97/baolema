@@ -13,4 +13,5 @@ public interface DishService {
     public boolean deleteByID(Integer id);
     public boolean update(Dish dish);
     public boolean save(Dish dish);
+    public List<Dish> selectByCategoryID(Integer categoryID);
 }

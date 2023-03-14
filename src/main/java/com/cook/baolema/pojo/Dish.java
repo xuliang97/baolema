@@ -11,9 +11,7 @@ import java.util.Date;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@ToString
-@Setter
-@Getter
+
 public class Dish {
     private Integer dishID;
     private String dish;

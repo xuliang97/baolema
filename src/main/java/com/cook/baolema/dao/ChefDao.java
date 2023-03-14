@@ -1,6 +1,7 @@
 package com.cook.baolema.dao;
 
 import com.cook.baolema.pojo.Chef;
+import com.cook.baolema.pojo.Customer;
 import org.apache.ibatis.annotations.*;
 
 import java.util.List;
@@ -22,4 +23,7 @@ public interface ChefDao {
 
     @Delete("delete from tb_chef where chefID=#{id}")
     int deleteByID(Integer id);
+
+    @Select("select * from tb_chef where phoneNumber=#{phoneNumber} and password=#{password}")
+    Chef selectByPhoneAndPwd(@Param("phoneNumber")String phoneNumber, @Param("password")String password);
 }

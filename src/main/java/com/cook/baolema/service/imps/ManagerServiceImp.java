@@ -41,5 +41,15 @@ public class ManagerServiceImp implements ManagerService {
         return managerDao.deleteByID(id)>0;
     }
 
+    @Override
+    public Manager selectByPhoneNumber(String phoneNumber) {
+        return managerDao.selectByPhoneNumber(phoneNumber);
+    }
+
+    @Override
+    public Manager selectByPhoneAndPwd(String phoneNumber, String password) {
+        return managerDao.selectByPhoneAndPwd(phoneNumber,password);
+    }
+
 
 }

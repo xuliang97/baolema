@@ -2,7 +2,10 @@ package com.cook.baolema.service.imps;
 
 import com.cook.baolema.dao.CustomerDao;
 import com.cook.baolema.pojo.Customer;
+import com.cook.baolema.pojo.Manager;
 import com.cook.baolema.service.CustomerService;
+import org.apache.ibatis.annotations.Param;
+import org.apache.ibatis.annotations.Select;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -37,4 +40,11 @@ public class CustomerServiceImp implements CustomerService {
     public boolean deleteByID(Integer id) {
         return customerDao.deleteByID(id)>0;
     }
+
+    @Override
+    public Customer selectByPhoneAndPwd(String phoneNumber, String password) {
+        return customerDao.selectByPhoneAndPwd(phoneNumber,password);
+    }
+
+
 }

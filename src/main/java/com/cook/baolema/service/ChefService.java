@@ -2,13 +2,16 @@ package com.cook.baolema.service;
 
 
 import com.cook.baolema.pojo.Chef;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
 public interface ChefService {
-    public List<Chef> selectAll();
-    public Chef selectByID(Integer id);
-    public boolean update(Chef chef);
-    public boolean save(Chef chef);
-    public boolean deleteByID(Integer id);
+
+    List<Chef> selectAll();
+    Chef selectByID(Integer id);
+    boolean update(Chef chef);
+    boolean save(Chef chef);
+    boolean deleteByID(Integer id);
+    Chef selectByPhoneAndPwd(String phoneNumber,String password);
 }

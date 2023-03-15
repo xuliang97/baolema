@@ -22,23 +22,28 @@ public class OrderInfoServiceImp implements OrderInfoService {
     }
 
     @Override
+    public List<OrderInfo> selectLimit(short status, Integer limit) {
+        return orderInfoDao.selectLimit(status, limit);
+    }
+
+    @Override
     public OrderInfo selectByID(Integer id) {
         return orderInfoDao.selectByID(id);
     }
 
     @Override
     public boolean update(OrderInfo orderInfo) {
-        return orderInfoDao.update(orderInfo)>0;
+        return orderInfoDao.update(orderInfo) > 0;
     }
 
     @Override
     public boolean save(OrderInfo orderInfo) {
-        return orderInfoDao.save(orderInfo)>0;
+        return orderInfoDao.save(orderInfo) > 0;
     }
 
     @Override
     public boolean deleteByID(Integer id) {
-        return orderInfoDao.deleteByID(id)>0;
+        return orderInfoDao.deleteByID(id) > 0;
     }
 
     @Override

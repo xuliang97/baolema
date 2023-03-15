@@ -10,6 +10,9 @@ public interface OrderInfoDao {
     @Select("select * from tb_order")
     List<OrderInfo> selectAll();
 
+    @Select("select * from tb_order where status=#{stat} order by createdTime limit #{n}")
+    List<OrderInfo> selectLimit(short stat, Integer n);
+
     @Select("select * from tb_order where orderID=#{id}")
     OrderInfo selectByID(Integer id);
 

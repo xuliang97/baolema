@@ -26,7 +26,9 @@ public interface CustomerDao {
     @Select("select * from tb_customer where phoneNumber=#{phoneNumber} and password=#{password}")
     Customer selectByPhoneAndPwd(@Param("phoneNumber")String phoneNumber, @Param("password")String password);
 
-
+    /*
+    * 按手机号查询
+    * */
     @Select("select * from tb_customer where phoneNumber=#{phoneNumber}")
     Customer selectByPhoneNumber(String phoneNumber);
 

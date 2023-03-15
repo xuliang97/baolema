@@ -4,6 +4,7 @@ import com.cook.baolema.pojo.*;
 import com.cook.baolema.service.DishService;
 import com.cook.baolema.service.OrderDetailService;
 import com.cook.baolema.service.OrderInfoService;
+import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -99,6 +100,14 @@ public class OrderInfoController {
     public Result deleteByID(@PathVariable Integer id) {
         boolean flag = orderInfoService.deleteByID(id);
         return new Result(flag ? Code.DELETE_OK : Code.DELETE_ERR, flag, flag ? "删除成功！" : "删除失败！");
-
     }
+    @GetMapping("/pages")
+    public Result selectAllByPage(Integer pageNum,Integer pageSize){
+        PageInfo<OrderInfo> orderInfos = orderInfoService.selectAllByPage(pageNum,pageSize);
+        Integer code = orderInfos != null ? Code.GET_OK : Code.GET_ERR;
+        String msg = orderInfos != null ? "" : "数据查询失败，请重试！";
+        return new Result(code,orderInfos,msg);
+    }
+
+
 }

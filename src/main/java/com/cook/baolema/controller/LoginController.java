@@ -35,7 +35,10 @@ public class LoginController {
     @PostMapping("/customer")
     public Result customerLogin(HttpServletRequest request){
         String phoneNumber = request.getParameter("phoneNumber");
+//        System.out.println(phoneNumber);
+
         String password = request.getParameter("password");
+//        System.out.println(password);
         Customer customer = customerService.selectByPhoneAndPwd(phoneNumber, password);
         Integer code = customer != null ? Code.LOGIN_OK : Code.LOGIN_ERR;
         String msg = customer != null ? "登录成功！" : "手机号或密码错误！";

@@ -1,5 +1,6 @@
 package com.cook.baolema.service;
 
+import com.cook.baolema.pojo.Dish;
 import com.cook.baolema.pojo.OrderDetail;
 
 import java.util.List;
@@ -10,4 +11,5 @@ public interface OrderDetailService {
     boolean update(OrderDetail orderDetail);
     boolean save(OrderDetail orderDetail);
     boolean deleteByID(Integer id);
+    List<OrderDetail> selectByOrderID(Integer orderID);
 }

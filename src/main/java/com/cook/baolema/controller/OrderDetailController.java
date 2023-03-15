@@ -47,4 +47,11 @@ public class OrderDetailController {
         return new Result(flag ? Code.DELETE_OK : Code.DELETE_ERR, flag, flag ? "删除成功！" : "删除失败！");
 
     }
+    @GetMapping("/byorder/{orderID}")
+    public Result selectByOrderID(@PathVariable Integer orderID){
+        List<OrderDetail> orderDetails = orderDetailService.selectByOrderID(orderID);
+        Integer code = orderDetails != null ? Code.GET_OK : Code.GET_ERR;
+        String msg = orderDetails != null ? "" : "数据查询失败，请重试！";
+        return new Result(code, orderDetails, msg);
+    }
 }

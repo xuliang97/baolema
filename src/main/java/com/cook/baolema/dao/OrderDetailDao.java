@@ -1,5 +1,6 @@
 package com.cook.baolema.dao;
 
+import com.cook.baolema.pojo.Dish;
 import com.cook.baolema.pojo.OrderDetail;
 import org.apache.ibatis.annotations.*;
 
@@ -21,4 +22,7 @@ public interface OrderDetailDao {
 
     @Delete("delete from tb_order_detail where orderDetailID=#{id}")
     int deleteByID(Integer id);
+
+    @Select("select * from tb_order_detail where orderID=#{orderID}")
+    List<OrderDetail> selectByOrderID(Integer orderID);
 }

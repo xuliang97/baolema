@@ -1,6 +1,7 @@
 package com.cook.baolema.service.imps;
 
 import com.cook.baolema.dao.OrderDetailDao;
+import com.cook.baolema.pojo.Dish;
 import com.cook.baolema.pojo.OrderDetail;
 import com.cook.baolema.service.OrderDetailService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,5 +37,10 @@ public class OrderDetailServiceImp implements OrderDetailService {
     @Override
     public boolean deleteByID(Integer id) {
         return orderDetailDao.deleteByID(id)>0;
+    }
+
+    @Override
+    public List<OrderDetail> selectByOrderID(Integer orderID) {
+        return orderDetailDao.selectByOrderID(orderID);
     }
 }

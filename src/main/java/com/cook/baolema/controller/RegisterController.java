@@ -26,6 +26,7 @@ public class RegisterController {
     @GetMapping("/check")
     public Result checkPhoneNumber(HttpServletRequest req){
         String phoneNumber = req.getParameter("phoneNumber");
+        System.out.println(phoneNumber);
         Customer customer = customerService.selectByPhoneNumber(phoneNumber);
         Integer code = customer != null ? Code.PHONENUMBER_EXIST : Code.PHONENUMBER_NOT_EXIST;
         String msg = customer != null ? "手机号已存在！" : "";
@@ -63,6 +64,7 @@ public class RegisterController {
     public void getCode(HttpServletRequest req){
         int randomNumber = RandomNumberGenerator.getRandomNumber(4);
         String code=String.valueOf(randomNumber);
+        System.out.println(code);
         //session中保存后台生成的code,为了将来拿出来与用户提交的进行比较。
         String phoneNumber = req.getParameter("phoneNumber");
         HttpSession session = req.getSession();

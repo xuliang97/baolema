@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 /**
  * @author 徐亮
@@ -30,7 +31,13 @@ public class LoginController {
         Manager manager = managerService.selectByPhoneAndPwd(phoneNumber, password);
         Integer code = manager != null ? Code.LOGIN_OK : Code.LOGIN_ERR;
         String msg = manager != null ? "登录成功！" : "手机号或密码错误！";
+        if(manager != null){
+            //如果登录成功，将用户的信息（用户对象）保存到session中
+            HttpSession session = request.getSession();
+            session.setAttribute("managerInfo",manager);
+        }
         return new Result(code, null, msg);
+
     }
     @PostMapping("/customer")
     public Result customerLogin(HttpServletRequest request){
@@ -40,9 +47,15 @@ public class LoginController {
         String password = request.getParameter("password");
 //        System.out.println(password);
         Customer customer = customerService.selectByPhoneAndPwd(phoneNumber, password);
+
         Integer code = customer != null ? Code.LOGIN_OK : Code.LOGIN_ERR;
         String msg = customer != null ? "登录成功！" : "手机号或密码错误！";
+        if(customer != null){
+            HttpSession session = request.getSession();
+            session.setAttribute("customerInfo",customer);
+        }
         return new Result(code, null, msg);
+
     }
     @PostMapping("/chef")
     public Result chefLogin(HttpServletRequest request){
@@ -51,6 +64,10 @@ public class LoginController {
         Chef chef = chefService.selectByPhoneAndPwd(phoneNumber, password);
         Integer code = chef != null ? Code.LOGIN_OK : Code.LOGIN_ERR;
         String msg = chef != null ? "登录成功！" : "手机号或密码错误！";
+        if(chef != null){
+            HttpSession session = request.getSession();
+            session.setAttribute("chefInfo",chef);
+        }
         return new Result(code, null, msg);
     }
 

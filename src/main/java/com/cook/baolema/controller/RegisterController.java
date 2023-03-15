@@ -4,6 +4,7 @@ import com.cook.baolema.pojo.Code;
 import com.cook.baolema.pojo.Customer;
 import com.cook.baolema.pojo.Result;
 import com.cook.baolema.service.CustomerService;
+import com.cook.baolema.utils.RandomNumberGenerator;
 import com.cook.baolema.utils.SmsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -60,10 +61,9 @@ public class RegisterController {
 
     @GetMapping("/getcode")
     public void getCode(HttpServletRequest req){
-        long l=System.currentTimeMillis();
-        int k1=(int) (l%10000);
-        String code=String.valueOf(k1);
-        //session中保存我后台生成的code,为了将来拿出来与用户提交的进行比较。
+        int randomNumber = RandomNumberGenerator.getRandomNumber(4);
+        String code=String.valueOf(randomNumber);
+        //session中保存后台生成的code,为了将来拿出来与用户提交的进行比较。
         String phoneNumber = req.getParameter("phoneNumber");
         HttpSession session = req.getSession();
         session.setAttribute("autocode",code);

@@ -35,6 +35,7 @@ public class DishController {
     }
     @PostMapping
     public Result save(@RequestBody Dish dish){
+        System.out.println(dish);
         dish.setCreatedTime(new Date());
         if(dish.getDishPhoto() == null){
             dish.setDishPhoto("static/dish.jpg");

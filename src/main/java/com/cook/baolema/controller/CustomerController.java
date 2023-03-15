@@ -2,9 +2,9 @@ package com.cook.baolema.controller;
 
 import com.cook.baolema.pojo.Code;
 import com.cook.baolema.pojo.Customer;
-import com.cook.baolema.pojo.Dish;
 import com.cook.baolema.pojo.Result;
 import com.cook.baolema.service.CustomerService;
+import com.github.pagehelper.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -49,6 +49,14 @@ public class CustomerController {
     public Result deleteByID(@PathVariable Integer id){
         boolean flag = customerService.deleteByID(id);
         return new Result(flag ? Code.DELETE_OK : Code.DELETE_ERR, flag, flag ? "删除成功！" : "删除失败！");
+    }
+
+    @GetMapping("/{pageNum}/{pageSize}")
+    public Result selectAllByPage(@PathVariable Integer pageNum,@PathVariable Integer pageSize){
+        PageInfo<Customer> customer = customerService.selectAllByPage(pageNum,pageSize);
+        Integer code = customer != null ? Code.GET_OK : Code.GET_ERR;
+        String msg = customer != null ? "" : "数据查询失败，请重试！";
+        return new Result(code,customer,msg);
     }
 
 }

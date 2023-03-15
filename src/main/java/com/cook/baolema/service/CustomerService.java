@@ -1,9 +1,7 @@
 package com.cook.baolema.service;
 
 import com.cook.baolema.pojo.Customer;
-import com.cook.baolema.pojo.Manager;
-import org.apache.ibatis.annotations.Param;
-import org.apache.ibatis.annotations.Select;
+import com.github.pagehelper.*;
 
 import java.util.List;
 
@@ -15,4 +13,5 @@ public interface CustomerService {
     boolean deleteByID(Integer id);
 
     Customer selectByPhoneAndPwd(String phoneNumber, String password);
+    PageInfo<Customer> selectAllByPage(int pageNum, int pageSize);
 }

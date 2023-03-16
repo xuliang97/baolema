@@ -61,7 +61,7 @@ public class CategoryController {
     @GetMapping("/alldishes")
     public Result categoriesAndDishes(){
         List<Category> categories = categoryService.selectAll();
-        System.out.println(categories);
+//        System.out.println(categories);
         List<CategoryAndDishes> resData = new ArrayList<>();
         for(Category category:categories){
             Integer categoryID = category.getCategoryID();//获取当前类别的id

@@ -17,4 +17,5 @@ public class Chef {
     private String password;
     private Date createdTime;
     private Float performance;
+
 }

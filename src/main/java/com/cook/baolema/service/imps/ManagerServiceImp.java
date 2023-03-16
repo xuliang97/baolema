@@ -51,5 +51,10 @@ public class ManagerServiceImp implements ManagerService {
         return managerDao.selectByPhoneAndPwd(phoneNumber,password);
     }
 
+    @Override
+    public boolean updatePwd(String password, Integer managerID) {
+        return managerDao.updatePwd(password,managerID)>0;
+    }
+
 
 }

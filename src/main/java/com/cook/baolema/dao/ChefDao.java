@@ -27,5 +27,6 @@ public interface ChefDao {
     @Select("select * from tb_chef where phoneNumber=#{phoneNumber} and password=#{password}")
     Chef selectByPhoneAndPwd(@Param("phoneNumber")String phoneNumber, @Param("password")String password);
 
-
+    @Update("update tb_chef set password=#{password} where chefID=#{chefID}")
+    int updatePwd(String password,Integer chefID);
 }

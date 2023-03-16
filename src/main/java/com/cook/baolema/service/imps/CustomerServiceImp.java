@@ -58,4 +58,9 @@ public class CustomerServiceImp implements CustomerService {
         return pageInfo;
     }
 
+    @Override
+    public boolean updatePwd(String password, Integer customerID) {
+        return customerDao.updatePwd(password,customerID)>0;
+    }
+
 }

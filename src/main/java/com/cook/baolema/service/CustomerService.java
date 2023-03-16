@@ -3,6 +3,8 @@ package com.cook.baolema.service;
 import com.cook.baolema.pojo.Customer;
 import com.github.pagehelper.*;
 
+
+
 import java.util.List;
 
 public interface CustomerService {
@@ -13,5 +15,7 @@ public interface CustomerService {
     boolean deleteByID(Integer id);
 
     Customer selectByPhoneAndPwd(String phoneNumber, String password);
+    Customer selectByPhoneNumber(String phoneNumber);
     PageInfo<Customer> selectAllByPage(int pageNum, int pageSize);
+
 }

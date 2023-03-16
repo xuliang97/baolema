@@ -42,6 +42,6 @@ public class SmsService {
 
     public static void main(String[] args) {
 
-        SmsService.send("15172118655","1110");
+        SmsService.send("15599050050","1110");
     }
 }

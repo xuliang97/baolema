@@ -35,6 +35,7 @@ public class DishController {
     }
     @PostMapping
     public Result save(@RequestBody Dish dish){
+        System.out.println(dish);
         dish.setCreatedTime(new Date());
         if(dish.getDishPhoto() == null){
             dish.setDishPhoto("static/dish.jpg");
@@ -61,6 +62,13 @@ public class DishController {
         Integer code = dishes != null ? Code.GET_OK : Code.GET_ERR;
         String msg = dishes != null ? "" : "数据查询失败，请重试！";
         return new Result(code, dishes, msg);
+    }
+    @GetMapping("/byname/{name}")
+    public Result selectByName(@PathVariable String name){
+        Dish dish = dishService.selectByName(name);
+        Integer code = dish != null ? Code.GET_OK : Code.GET_ERR;
+        String msg = dish != null ? "" : "数据查询失败，请重试！";
+        return new Result(code,dish,msg);
     }
 
 }

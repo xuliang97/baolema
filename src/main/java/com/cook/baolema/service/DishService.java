@@ -8,10 +8,11 @@ import java.util.List;
  * @author 徐亮
  */
 public interface DishService {
-    public List<Dish> selectAll();
-    public Dish selectByID(Integer id);
-    public boolean deleteByID(Integer id);
-    public boolean update(Dish dish);
-    public boolean save(Dish dish);
-    public List<Dish> selectByCategoryID(Integer categoryID);
+    List<Dish> selectAll();
+    Dish selectByID(Integer id);
+    boolean deleteByID(Integer id);
+    boolean update(Dish dish);
+    boolean save(Dish dish);
+    List<Dish> selectByCategoryID(Integer categoryID);
+    Dish selectByName(String name);
 }

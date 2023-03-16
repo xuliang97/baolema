@@ -45,4 +45,7 @@ public interface DishDao {
     * */
     @Select("select * from tb_dish where categoryID=#{categoryID}")
     List<Dish> selectByCategoryID(Integer categoryID);
+
+    @Select("select * from tb_dish where dish=#{dish}")
+    Dish selectByName(String name);
 }

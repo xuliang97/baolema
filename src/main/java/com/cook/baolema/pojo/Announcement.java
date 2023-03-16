@@ -13,6 +13,7 @@ import java.util.Date;
 @NoArgsConstructor
 
 public class Announcement {
+
     private Integer announcementID;
     private Short status;
     private String url;

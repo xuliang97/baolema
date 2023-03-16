@@ -2,12 +2,9 @@ package com.cook.baolema.service.imps;
 
 import com.cook.baolema.dao.CustomerDao;
 import com.cook.baolema.pojo.Customer;
-import com.cook.baolema.pojo.Manager;
 import com.cook.baolema.service.CustomerService;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
-import org.apache.ibatis.annotations.Param;
-import org.apache.ibatis.annotations.Select;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -49,12 +46,16 @@ public class CustomerServiceImp implements CustomerService {
     }
 
     @Override
+    public Customer selectByPhoneNumber(String phoneNumber) {
+        return customerDao.selectByPhoneNumber(phoneNumber);
+    }
+
+    @Override
     public PageInfo<Customer> selectAllByPage(int pageNum, int pageSize) {
         PageHelper.startPage(pageNum,pageSize);
         List<Customer> customers = customerDao.selectAll();
         PageInfo<Customer> pageInfo = new PageInfo<Customer>(customers);
         return pageInfo;
     }
-
 
 }

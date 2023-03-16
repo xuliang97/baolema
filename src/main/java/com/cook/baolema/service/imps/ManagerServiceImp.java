@@ -52,8 +52,8 @@ public class ManagerServiceImp implements ManagerService {
     }
 
     @Override
-    public boolean updatePwd(String password, Integer managerID) {
-        return managerDao.updatePwd(password,managerID)>0;
+    public boolean updatePwd(String password, String phoneNumber) {
+        return managerDao.updatePwd(password,phoneNumber)>0;
     }
 
 

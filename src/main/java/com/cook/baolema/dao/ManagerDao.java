@@ -49,6 +49,6 @@ public interface ManagerDao {
     @Select("select * from tb_manager where phoneNumber=#{phoneNumber} and password=#{password}")
     Manager selectByPhoneAndPwd(@Param("phoneNumber")String phoneNumber,@Param("password")String password);
 
-    @Update("update tb_manager set password=#{password} where managerID=#{managerID}")
-    int updatePwd(String password,Integer managerID);
+    @Update("update tb_manager set password=#{password} where phoneNumber=#{phoneNumber}")
+    int updatePwd(String password,String phoneNumber);
 }

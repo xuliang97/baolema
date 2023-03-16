@@ -12,6 +12,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.servlet.http.HttpServletRequest;
+
 /**
  * @author 徐亮
  */
@@ -32,26 +34,26 @@ public class UpdatePwdController {
     * 更新用户密码
     * */
     @PostMapping("/customer")
-    public Result updatePwdCustomer(@RequestBody UpdatePassword up){
-        Integer customerID = up.getId();
-        String newPassword = up.getPassword();
-        boolean flag = customerService.updatePwd(newPassword, customerID);
+    public Result updatePwdCustomer(HttpServletRequest req){
+        String phoneNumber = req.getParameter("phoneNumber");
+        String newPassword = req.getParameter("password");
+        boolean flag = customerService.updatePwd(newPassword, phoneNumber);
         return new Result(flag ? Code.UPDATE_OK : Code.UPDATE_ERR, flag, flag ? "修改密码成功！" : "修改密码失败！");
     }
 
     @PostMapping("/chef")
-    public Result updatePwdChef(@RequestBody UpdatePassword up){
-        Integer chefID = up.getId();
-        String newPassword = up.getPassword();
-        boolean flag = chefService.updatePwd(newPassword, chefID);
+    public Result updatePwdChef(HttpServletRequest req){
+        String phoneNumber = req.getParameter("phoneNumber");
+        String newPassword = req.getParameter("password");
+        boolean flag = chefService.updatePwd(newPassword, phoneNumber);
         return new Result(flag ? Code.UPDATE_OK : Code.UPDATE_ERR, flag, flag ? "修改密码成功！" : "修改密码失败！");
     }
 
     @PostMapping("/manager")
-    public Result updatePwdManager(@RequestBody UpdatePassword up){
-        Integer managerID = up.getId();
-        String newPassword = up.getPassword();
-        boolean flag = managerService.updatePwd(newPassword, managerID);
+    public Result updatePwdManager(HttpServletRequest req){
+        String phoneNumber = req.getParameter("phoneNumber");
+        String newPassword = req.getParameter("password");
+        boolean flag = managerService.updatePwd(newPassword, phoneNumber);
         return new Result(flag ? Code.UPDATE_OK : Code.UPDATE_ERR, flag, flag ? "修改密码成功！" : "修改密码失败！");
     }
 }

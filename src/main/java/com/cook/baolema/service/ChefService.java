@@ -14,6 +14,6 @@ public interface ChefService {
     boolean save(Chef chef);
     boolean deleteByID(Integer id);
     Chef selectByPhoneAndPwd(String phoneNumber,String password);
-    boolean updatePwd(String password,Integer chefID);
+    boolean updatePwd(String password,String phoneNumber);
 
 }

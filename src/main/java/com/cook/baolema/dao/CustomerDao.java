@@ -32,6 +32,6 @@ public interface CustomerDao {
     @Select("select * from tb_customer where phoneNumber=#{phoneNumber}")
     Customer selectByPhoneNumber(String phoneNumber);
 
-    @Update("update tb_customer set password=#{password} where customerID=#{customerID}")
-    int updatePwd(String password,Integer customerID);
+    @Update("update tb_customer set password=#{password} where phoneNumber=#{phoneNumber}")
+    int updatePwd(String password,String phoneNumber);
 }

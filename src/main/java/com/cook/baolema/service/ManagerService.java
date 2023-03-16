@@ -19,6 +19,6 @@ public interface ManagerService {
 
     Manager selectByPhoneNumber(String phoneNumber);
     Manager selectByPhoneAndPwd(String phoneNumber, String password);
-    boolean updatePwd(String password,Integer managerID);
+    boolean updatePwd(String password,String phoneNumber);
 
 }

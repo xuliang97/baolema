@@ -17,6 +17,6 @@ public interface CustomerService {
     Customer selectByPhoneAndPwd(String phoneNumber, String password);
     Customer selectByPhoneNumber(String phoneNumber);
     PageInfo<Customer> selectAllByPage(int pageNum, int pageSize);
-    boolean updatePwd(String password,Integer customerID);
+    boolean updatePwd(String password,String phoneNumber);
 
 }

@@ -44,7 +44,7 @@ public class ChefServiceImp implements ChefService {
     }
 
     @Override
-    public boolean updatePwd(String password, Integer chefID) {
-        return chefDao.updatePwd(password,chefID)>0;
+    public boolean updatePwd(String password, String  phoneNumber) {
+        return chefDao.updatePwd(password,phoneNumber)>0;
     }
 }

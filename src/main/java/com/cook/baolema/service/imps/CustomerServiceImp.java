@@ -2,12 +2,9 @@ package com.cook.baolema.service.imps;
 
 import com.cook.baolema.dao.CustomerDao;
 import com.cook.baolema.pojo.Customer;
-import com.cook.baolema.pojo.Manager;
 import com.cook.baolema.service.CustomerService;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
-import org.apache.ibatis.annotations.Param;
-import org.apache.ibatis.annotations.Select;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

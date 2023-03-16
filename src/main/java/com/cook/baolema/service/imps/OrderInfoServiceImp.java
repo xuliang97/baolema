@@ -22,30 +22,46 @@ public class OrderInfoServiceImp implements OrderInfoService {
     }
 
     @Override
+    public List<OrderInfo> selectLimit(short status, Integer limit) {
+        return orderInfoDao.selectLimit(status, limit);
+    }
+
+    @Override
     public OrderInfo selectByID(Integer id) {
         return orderInfoDao.selectByID(id);
     }
 
     @Override
     public boolean update(OrderInfo orderInfo) {
-        return orderInfoDao.update(orderInfo)>0;
+        return orderInfoDao.update(orderInfo) > 0;
     }
 
     @Override
     public boolean save(OrderInfo orderInfo) {
-        return orderInfoDao.save(orderInfo)>0;
+        return orderInfoDao.save(orderInfo) > 0;
     }
 
     @Override
     public boolean deleteByID(Integer id) {
-        return orderInfoDao.deleteByID(id)>0;
+        return orderInfoDao.deleteByID(id) > 0;
+    }
+
+    @Override
+    public boolean updateStatusByOrderID(Integer orderID, short status) {
+        return orderInfoDao.updateStatusByOrderID(orderID, status) > 0;
     }
 
     @Override
     public PageInfo<OrderInfo> selectAllByPage(int pageNum, int pageSize) {
-        PageHelper.startPage(pageNum,pageSize);
+        PageHelper.startPage(pageNum, pageSize);
         List<OrderInfo> orderInfos = orderInfoDao.selectAll();
         PageInfo<OrderInfo> pageInfo = new PageInfo<OrderInfo>(orderInfos);
         return pageInfo;
     }
+
+    @Override
+    public Integer checkOrderID(Integer customerID) {
+        return orderInfoDao.checkOrderID(customerID);
+    }
+
 }

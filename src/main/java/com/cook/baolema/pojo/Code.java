@@ -12,9 +12,8 @@ public class Code {
     public static final Integer LOGIN_OK = 20051;
 
     public static final Integer PHONENUMBER_NOT_EXIST = 20061;
+
     public static final Integer VERIFICATION_CODE_OK = 20071;
-
-
 
     public static final Integer SAVE_ERR = 20010;
     public static final Integer DELETE_ERR = 20020;
@@ -25,6 +24,13 @@ public class Code {
     public static final Integer PHONENUMBER_EXIST = 20060;
 
     public static final Integer VERIFICATION_CODE_ERR = 20070;
+    public static final Integer SYSTEM_UNKNOW_ERR = 59999;
+
+    public static final Integer SYSTEM_TIMEOUT_ERR = 50002;
+
+    public static final Integer BUSINESS_ERR = 60002;
+
+    public static final Integer SYSTEM_ERR = 50001;
 
 
 

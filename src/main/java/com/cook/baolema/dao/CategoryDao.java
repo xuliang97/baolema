@@ -3,6 +3,7 @@ package com.cook.baolema.dao;
 import com.cook.baolema.pojo.Category;
 import com.cook.baolema.pojo.Dish;
 import org.apache.ibatis.annotations.*;
+import org.springframework.web.bind.annotation.GetMapping;
 
 import java.util.List;
 
@@ -40,4 +41,11 @@ public interface CategoryDao {
     * */
     @Delete("delete from tb_category where categoryID=#{id}")
     int deleteByID(Integer id);
+
+
+    /*
+    * 查询所有类别id*/
+
+    @Select("select categoryID from tb_category")
+    List<Integer> selectAllIDs();
 }

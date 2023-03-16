@@ -42,4 +42,9 @@ public class ChefServiceImp implements ChefService {
     public Chef selectByPhoneAndPwd(String phoneNumber, String password) {
         return chefDao.selectByPhoneAndPwd(phoneNumber,password);
     }
+
+    @Override
+    public boolean updatePwd(String password, Integer chefID) {
+        return chefDao.updatePwd(password,chefID)>0;
+    }
 }

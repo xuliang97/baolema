@@ -28,7 +28,6 @@ public class ManagerController {
     }
     @GetMapping("/{id}")
     public Result selectByID(@PathVariable("id") Integer id){
-
         Manager manager = managerService.selectByID(id);
         Integer code = manager != null ? Code.GET_OK : Code.GET_ERR;
         String msg = manager != null ? "" : "数据查询失败，请重试！";

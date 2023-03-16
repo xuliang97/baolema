@@ -14,6 +14,8 @@ public interface OrderInfoService {
     boolean save(OrderInfo orderInfo);
     boolean deleteByID(Integer id);
 
+    boolean updateStatusByOrderID(Integer orderID,short status);
+
     PageInfo<OrderInfo> selectAllByPage(int pageNum, int pageSize);
 
 }

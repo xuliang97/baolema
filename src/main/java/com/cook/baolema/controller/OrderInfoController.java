@@ -41,7 +41,7 @@ public class OrderInfoController {
     @GetMapping("/{status}/{limit}")
     public Result selectLimitOrders(@PathVariable short status, @PathVariable Integer limit) {
 
-        System.out.println("selectLimitOrders start");
+//        System.out.println("selectLimitOrders start");
 
         List<RespOrderInfo> respOrderInfoList = new ArrayList<>();
 
@@ -96,17 +96,27 @@ public class OrderInfoController {
 
     }
 
+    @PostMapping("/updatestatus")
+    public Result updateStatusByOrderID(Integer orderId, Integer status) {
+//        System.out.println(status);
+        int i = status.intValue();
+        boolean flag = orderInfoService.updateStatusByOrderID(orderId,(short)i);
+        return new Result(flag ? Code.UPDATE_OK : Code.UPDATE_ERR, flag, flag ? "修改成功！" : "修改失败！");
+    }
+
+
     @GetMapping("/delete/{id}")
     public Result deleteByID(@PathVariable Integer id) {
         boolean flag = orderInfoService.deleteByID(id);
         return new Result(flag ? Code.DELETE_OK : Code.DELETE_ERR, flag, flag ? "删除成功！" : "删除失败！");
     }
+
     @GetMapping("/pages")
-    public Result selectAllByPage(Integer pageNum,Integer pageSize){
-        PageInfo<OrderInfo> orderInfos = orderInfoService.selectAllByPage(pageNum,pageSize);
+    public Result selectAllByPage(Integer pageNum, Integer pageSize) {
+        PageInfo<OrderInfo> orderInfos = orderInfoService.selectAllByPage(pageNum, pageSize);
         Integer code = orderInfos != null ? Code.GET_OK : Code.GET_ERR;
         String msg = orderInfos != null ? "" : "数据查询失败，请重试！";
-        return new Result(code,orderInfos,msg);
+        return new Result(code, orderInfos, msg);
     }
 
 

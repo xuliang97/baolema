@@ -24,4 +24,7 @@ public interface OrderInfoDao {
 
     @Delete("delete from tb_order where orderID=#{id}")
     int deleteByID(Integer id);
+
+    @Update("update tb_order set status=#{status} where orderID=#{orderID}")
+    int updateStatusByOrderID(Integer orderID,short status);
 }

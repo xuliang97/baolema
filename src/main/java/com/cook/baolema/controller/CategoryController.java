@@ -1,13 +1,12 @@
 package com.cook.baolema.controller;
 
-import com.cook.baolema.pojo.Announcement;
-import com.cook.baolema.pojo.Category;
-import com.cook.baolema.pojo.Code;
-import com.cook.baolema.pojo.Result;
+import com.cook.baolema.pojo.*;
 import com.cook.baolema.service.CategoryService;
+import com.cook.baolema.service.DishService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
@@ -20,6 +19,8 @@ import java.util.Locale;
 public class CategoryController {
     @Autowired
     private CategoryService categoryService;
+    @Autowired
+    private DishService dishService;
     @GetMapping
     public Result selectAll(){
         List<Category> categories = categoryService.selectAll();
@@ -52,8 +53,24 @@ public class CategoryController {
     public Result update(@RequestBody Category category){
         boolean flag = categoryService.update(category);
         return new Result(flag ? Code.UPDATE_OK : Code.UPDATE_ERR, flag, flag ? "修改成功！" : "修改失败！");
-
     }
 
 
+    /*
+    * 返回所有菜品，按类别分类*/
+    @GetMapping("/alldishes")
+    public Result categoriesAndDishes(){
+        List<Category> categories = categoryService.selectAll();
+        System.out.println(categories);
+        List<CategoryAndDishes> resData = new ArrayList<>();
+        for(Category category:categories){
+            Integer categoryID = category.getCategoryID();//获取当前类别的id
+            String category1 = category.getCategory();//获取当前类别名称
+            List<Dish> dishes = dishService.selectByCategoryID(categoryID);//获取当前类别的所有菜品
+            CategoryAndDishes categoryAndDishes = new CategoryAndDishes(categoryID, null, category1, dishes);
+            resData.add(categoryAndDishes);
+        }
+        return new Result(Code.GET_OK,resData,null);
+
+    }
 }

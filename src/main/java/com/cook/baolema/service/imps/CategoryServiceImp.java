@@ -41,7 +41,10 @@ public class CategoryServiceImp implements CategoryService {
         return categoryDao.save(category)>0;
     }
 
-
+    @Override
+    public List<Integer> selectAllIDs() {
+        return categoryDao.selectAllIDs();
+    }
 
 
 }

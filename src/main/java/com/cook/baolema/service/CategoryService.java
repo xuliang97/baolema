@@ -15,5 +15,7 @@ public interface CategoryService{
     public boolean update(Category category);
     public boolean save(Category category);
 
+    List<Integer> selectAllIDs();
+
 
 }

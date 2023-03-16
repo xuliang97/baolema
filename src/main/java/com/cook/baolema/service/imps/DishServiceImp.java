@@ -44,4 +44,11 @@ public class DishServiceImp implements DishService {
     public List<Dish> selectByCategoryID(Integer categoryID) {
         return dishDao.selectByCategoryID(categoryID);
     }
+
+    @Override
+    public Dish selectByName(String name) {
+        return dishDao.selectByName(name);
+    }
+
+
 }

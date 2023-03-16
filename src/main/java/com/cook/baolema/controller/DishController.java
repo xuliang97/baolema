@@ -63,5 +63,12 @@ public class DishController {
         String msg = dishes != null ? "" : "数据查询失败，请重试！";
         return new Result(code, dishes, msg);
     }
+    @GetMapping("/byname/{name}")
+    public Result selectByName(@PathVariable String name){
+        Dish dish = dishService.selectByName(name);
+        Integer code = dish != null ? Code.GET_OK : Code.GET_ERR;
+        String msg = dish != null ? "" : "数据查询失败，请重试！";
+        return new Result(code,dish,msg);
+    }
 
 }

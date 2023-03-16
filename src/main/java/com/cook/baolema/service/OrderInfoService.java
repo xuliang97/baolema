@@ -18,4 +18,6 @@ public interface OrderInfoService {
 
     PageInfo<OrderInfo> selectAllByPage(int pageNum, int pageSize);
 
+    Integer checkOrderID(Integer customerID);
+
 }

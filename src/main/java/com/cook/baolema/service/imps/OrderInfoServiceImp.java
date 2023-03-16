@@ -58,4 +58,10 @@ public class OrderInfoServiceImp implements OrderInfoService {
         PageInfo<OrderInfo> pageInfo = new PageInfo<OrderInfo>(orderInfos);
         return pageInfo;
     }
+
+    @Override
+    public Integer checkOrderID(Integer customerID) {
+        return orderInfoDao.checkOrderID(customerID);
+    }
+
 }

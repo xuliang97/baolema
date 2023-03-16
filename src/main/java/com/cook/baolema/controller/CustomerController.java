@@ -2,10 +2,9 @@ package com.cook.baolema.controller;
 
 import com.cook.baolema.pojo.Code;
 import com.cook.baolema.pojo.Customer;
-import com.cook.baolema.pojo.Dish;
 import com.cook.baolema.pojo.Result;
 import com.cook.baolema.service.CustomerService;
-import com.github.pagehelper.PageInfo;
+import com.github.pagehelper.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -58,12 +57,12 @@ public class CustomerController {
 //        String msg = customer != null ? "" : "数据查询失败，请重试！";
 //        return new Result(code,customer,msg);
 //    }
-@GetMapping("/pages")
-public Result selectAllByPage(Integer pageNum,Integer pageSize){
-    PageInfo<Customer> customer = customerService.selectAllByPage(pageNum,pageSize);
-    Integer code = customer != null ? Code.GET_OK : Code.GET_ERR;
-    String msg = customer != null ? "" : "数据查询失败，请重试！";
-    return new Result(code,customer,msg);
-}
+    @GetMapping("/{pageNum}/{pageSize}")
+    public Result selectAllByPage(@PathVariable Integer pageNum,@PathVariable Integer pageSize){
+        PageInfo<Customer> customer = customerService.selectAllByPage(pageNum,pageSize);
+        Integer code = customer != null ? Code.GET_OK : Code.GET_ERR;
+        String msg = customer != null ? "" : "数据查询失败，请重试！";
+        return new Result(code,customer,msg);
+    }
 
 }

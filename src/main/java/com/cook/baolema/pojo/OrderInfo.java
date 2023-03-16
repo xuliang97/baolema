@@ -16,4 +16,5 @@ public class OrderInfo {
     private String userRatings;
     private Float totalAmount;
     private Date createdTime;
+    private String uuid;
 }

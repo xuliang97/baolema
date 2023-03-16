@@ -85,6 +85,8 @@ public class OrderInfoController {
     @PostMapping
     public Result save(@RequestBody OrderInfo orderInfo) {
         orderInfo.setCreatedTime(new Date());
+        String uuid = UUID.randomUUID().toString().replace("-", "");
+        orderInfo.setUuid(uuid);
         boolean flag = orderInfoService.save(orderInfo);
         return new Result(flag ? Code.SAVE_OK : Code.SAVE_ERR, flag, flag ? "保存成功！" : "保存失败！");
 

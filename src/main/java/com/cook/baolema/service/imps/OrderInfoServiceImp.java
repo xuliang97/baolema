@@ -47,8 +47,13 @@ public class OrderInfoServiceImp implements OrderInfoService {
     }
 
     @Override
+    public boolean updateStatusByOrderID(Integer orderID, short status) {
+        return orderInfoDao.updateStatusByOrderID(orderID, status) > 0;
+    }
+
+    @Override
     public PageInfo<OrderInfo> selectAllByPage(int pageNum, int pageSize) {
-        PageHelper.startPage(pageNum,pageSize);
+        PageHelper.startPage(pageNum, pageSize);
         List<OrderInfo> orderInfos = orderInfoDao.selectAll();
         PageInfo<OrderInfo> pageInfo = new PageInfo<OrderInfo>(orderInfos);
         return pageInfo;

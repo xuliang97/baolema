@@ -52,6 +52,8 @@ public class DishController {
     }
     @GetMapping("/delete/{id}")
     public Result deleteByID(@PathVariable Integer id){
+        System.out.println("删除菜品");
+        System.out.println(id);
         boolean flag = dishService.deleteByID(id);
         return new Result(flag ? Code.DELETE_OK : Code.DELETE_ERR, flag, flag ? "删除成功！" : "删除失败！");
 

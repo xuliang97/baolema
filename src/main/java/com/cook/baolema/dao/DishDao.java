@@ -13,13 +13,13 @@ public interface DishDao {
     /*
     查询所有菜品
     * */
-    @Select("select * from tb_dish")
+    @Select("select * from tb_dish where deleted=0")
     List<Dish> selectAll();
 
     /*
     按id查询菜品
      */
-    @Select("select * from tb_dish where dishID=#{id}")
+    @Select("select * from tb_dish where dishID=#{id} and deleted=0")
     Dish selectByID(Integer id);
 
     /*
@@ -37,15 +37,20 @@ public interface DishDao {
     /*
     * 删除菜品
     * */
-    @Delete("delete from tb_dish where dishID=#{id}")
+    @Update("update tb_dish set deleted=1 where dishID=#{id}")
     int deleteByID(Integer id);
 
     /*
     * 根据类别查询菜品
     * */
-    @Select("select * from tb_dish where categoryID=#{categoryID}")
+    @Select("select * from tb_dish where categoryID=#{categoryID} and deleted=0")
     List<Dish> selectByCategoryID(Integer categoryID);
 
-    @Select("select * from tb_dish where dish=#{dish}")
+    /**
+     * 根据菜品名称查询菜品
+     * @param name
+     * @return
+     */
+    @Select("select * from tb_dish where dish=#{dish} and deleted=0")
     Dish selectByName(String name);
 }

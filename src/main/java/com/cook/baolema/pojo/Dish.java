@@ -21,4 +21,5 @@ public class Dish {
     private Float price;
     private Integer Inventory;
     private Date createdTime;
+    private Integer deleted;
 }

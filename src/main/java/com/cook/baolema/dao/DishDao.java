@@ -25,13 +25,13 @@ public interface DishDao {
     /*
     增加or保存菜品
     * */
-    @Insert("insert into tb_dish values (null,#{dish},#{categoryID},#{dishPhoto},#{description},#{price},#{Inventory},#{createdTime})")
+    @Insert("insert into tb_dish(`dish`, `categoryID`, `dishPhoto`, `description`, `price`, `inventory`, `createdTime`) values (#{dish},#{categoryID},#{dishPhoto},#{description},#{price},#{inventory},#{createdTime})")
     int save(Dish newDish);
 
     /*
     * 修改菜品信息
     * */
-    @Update("update tb_dish set dish=#{dish},categoryID=#{categoryID},dishPhoto=#{dishPhoto},description=#{description},price=#{price},Inventory=#{Inventory} where dishID=#{dishID}")
+    @Update("update tb_dish set dish=#{dish},categoryID=#{categoryID},dishPhoto=#{dishPhoto},description=#{description},price=#{price},inventory=#{inventory} where dishID=#{dishID}")
     int update(Dish newDish);
 
     /*

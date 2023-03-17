@@ -50,13 +50,7 @@ public class CustomerController {
         boolean flag = customerService.deleteByID(id);
         return new Result(flag ? Code.DELETE_OK : Code.DELETE_ERR, flag, flag ? "删除成功！" : "删除失败！");
     }
-//    @GetMapping("/{pageNum}/{pageSize}")
-//    public Result selectAllByPage(@PathVariable Integer pageNum,@PathVariable Integer pageSize){
-//        PageInfo<Customer> customer = customerService.selectAllByPage(pageNum,pageSize);
-//        Integer code = customer != null ? Code.GET_OK : Code.GET_ERR;
-//        String msg = customer != null ? "" : "数据查询失败，请重试！";
-//        return new Result(code,customer,msg);
-//    }
+
     @GetMapping("/{pageNum}/{pageSize}")
     public Result selectAllByPage(@PathVariable Integer pageNum,@PathVariable Integer pageSize){
         PageInfo<Customer> customer = customerService.selectAllByPage(pageNum,pageSize);

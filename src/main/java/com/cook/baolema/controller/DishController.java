@@ -35,12 +35,14 @@ public class DishController {
     }
     @PostMapping
     public Result save(@RequestBody Dish dish){
-        System.out.println(dish);
+//        System.out.println(dish);
         dish.setCreatedTime(new Date());
         if(dish.getDishPhoto() == null){
             dish.setDishPhoto("static/dish.jpg");
         }
+        System.out.println(dish);
         boolean flag = dishService.save(dish);
+        System.out.println(flag);
         return new Result(flag ? Code.SAVE_OK : Code.SAVE_ERR, flag, flag ? "保存成功！" : "保存失败！");
 
     }
@@ -52,6 +54,8 @@ public class DishController {
     }
     @GetMapping("/delete/{id}")
     public Result deleteByID(@PathVariable Integer id){
+        System.out.println("删除菜品");
+        System.out.println(id);
         boolean flag = dishService.deleteByID(id);
         return new Result(flag ? Code.DELETE_OK : Code.DELETE_ERR, flag, flag ? "删除成功！" : "删除失败！");
 

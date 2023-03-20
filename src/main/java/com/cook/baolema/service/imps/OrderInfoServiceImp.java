@@ -6,6 +6,7 @@ import com.cook.baolema.dao.OrderInfoDao;
 import com.cook.baolema.pojo.*;
 import com.cook.baolema.service.OrderInfoService;
 import com.cook.baolema.utils.Status2Message;
+import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -62,7 +63,7 @@ public class OrderInfoServiceImp implements OrderInfoService {
 
     @Override
     public PageInfo<RespOrderDetail3> selectAllByPage(int pageNum, int pageSize) {
-        PageHelper.startPage(pageNum, pageSize);
+        Page page = PageHelper.startPage(pageNum, pageSize);
 
         List<OrderInfo> orderInfos = orderInfoDao.selectAll();
 
@@ -104,6 +105,7 @@ public class OrderInfoServiceImp implements OrderInfoService {
         }
 
         PageInfo<RespOrderDetail3> pageInfo = new PageInfo<RespOrderDetail3>(respOrderDetail3List);
+        pageInfo.setTotal(page.getTotal());
         return pageInfo;
     }
 

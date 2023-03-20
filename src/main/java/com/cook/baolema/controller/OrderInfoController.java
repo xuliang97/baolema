@@ -160,5 +160,38 @@ public class OrderInfoController {
         return new Result(code, orderInfos, msg);
     }
 
+    @GetMapping("/bycustomerID/{id}")
+    public Result selectByCustomerID(@PathVariable Integer id){
+        Integer orderID = orderInfoService.checkOrderID(id);
+        Short status = 0;
+        List<OrderDetail> orderDetailList = orderDetailService.selectByOrderID(orderID);
+        Integer code = orderDetailList != null ? Code.GET_OK : Code.GET_ERR;
+        String msg = orderDetailList != null ? "成功" : "数据查询失败，请重试！";
+        List<RespOrderDetail2> respOrderDetail2List = new ArrayList<>();
 
+        for(OrderDetail od : orderDetailList){
+            Integer dishID = od.getDishID();
+            Dish dish = dishService.selectByID(dishID);
+            String dishName = dish.getDish();
+            String description = dish.getDescription();
+            String dishPhoto = dish.getDishPhoto();
+
+            RespOrderDetail2 respOrderDetail2 = new RespOrderDetail2();
+            respOrderDetail2.setDishName(dishName);
+            respOrderDetail2.setDescription(description);
+            respOrderDetail2.setDishPhoto(dishPhoto);
+
+            respOrderDetail2.setNumber(od.getNumber());
+            respOrderDetail2.setDishAmount(od.getDishAmount());
+
+            respOrderDetail2List.add(respOrderDetail2);
+        }
+
+        HashMap<String,Object> respInfo = new HashMap<>();
+        respInfo.put("orderID",orderID);
+        respInfo.put("status",status);
+        respInfo.put("orderDetailList",respOrderDetail2List);
+
+        return new Result(code, respInfo, msg);
+    }
 }

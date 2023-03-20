@@ -64,4 +64,9 @@ public class OrderInfoServiceImp implements OrderInfoService {
         return orderInfoDao.checkOrderID(customerID);
     }
 
+    @Override
+    public List<OrderInfo> selectHistoryOrder(Integer customerID) {
+        return orderInfoDao.selectHistoryOrder(customerID);
+    }
+
 }

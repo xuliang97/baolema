@@ -4,6 +4,7 @@ import com.cook.baolema.pojo.*;
 import com.cook.baolema.service.DishService;
 import com.cook.baolema.service.OrderDetailService;
 import com.cook.baolema.service.OrderInfoService;
+import com.cook.baolema.utils.SortList;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.github.pagehelper.PageInfo;
@@ -192,4 +193,16 @@ public class OrderInfoController {
 
         return new Result(code, respInfo, msg);
     }
+
+    @GetMapping("/orderhistory/{id}")
+    public Result selectOrderHistory(@PathVariable Integer id){
+        List<OrderInfo> orderInfos = orderInfoService.selectHistoryOrder(id);
+        Integer code = orderInfos != null ? Code.GET_OK : Code.GET_ERR;
+        String msg = orderInfos != null ? "成功" : "数据查询失败，请重试！";
+
+        List<OrderInfo> historyOrder = SortList.search(orderInfos);
+
+        return new Result(code, historyOrder, msg);
+    }
+
 }

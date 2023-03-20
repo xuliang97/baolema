@@ -151,12 +151,15 @@ public class OrderInfoController {
         return new Result(flag ? Code.DELETE_OK : Code.DELETE_ERR, flag, flag ? "删除成功！" : "删除失败！");
     }
 
-    @GetMapping("/pages")
-    public Result selectAllByPage(Integer pageNum, Integer pageSize) {
-        PageInfo<OrderInfo> orderInfos = orderInfoService.selectAllByPage(pageNum, pageSize);
-        Integer code = orderInfos != null ? Code.GET_OK : Code.GET_ERR;
-        String msg = orderInfos != null ? "" : "数据查询失败，请重试！";
-        return new Result(code, orderInfos, msg);
+    @GetMapping("/allorder/{pageNum}/{pageSize}") //add resp2
+    public Result selectAllByPage(@PathVariable Integer pageNum, @PathVariable Integer pageSize) {
+        PageInfo<RespOrderDetail3> respOrderDetail3PageInfo = orderInfoService.selectAllByPage(pageNum, pageSize);
+
+        Integer code = respOrderDetail3PageInfo != null ? Code.GET_OK : Code.GET_ERR;
+        String msg = respOrderDetail3PageInfo != null ? "" : "数据查询失败，请重试！";
+
+
+        return new Result(code, respOrderDetail3PageInfo, msg);
     }
 
     @GetMapping("/bycustomerID/{id}")

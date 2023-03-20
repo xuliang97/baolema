@@ -96,8 +96,19 @@
             <artifactId>pagehelper-spring-boot-starter</artifactId>
             <version>1.4.6</version>
         </dependency>
-
-
+        <!-- 开发热启动 -->
+        <!-- 虽然缓存在生产中非常有用，但它在开发过程中会起到反作用，使我们无法看到在应用程序中所做的更改。-->
+        <!--因此，spring-boot-devtools默认禁用缓存选项。-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-devtools</artifactId>
+            <optional>true</optional>
+        </dependency>
+        <!-- redis插件 用于缓存、购物车等应用场景-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-data-redis</artifactId>
+        </dependency>
     </dependencies>
 
 

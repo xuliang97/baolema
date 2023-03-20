@@ -20,4 +20,6 @@ public interface OrderInfoService {
 
     Integer checkOrderID(Integer customerID);
 
+    List<OrderInfo> selectHistoryOrder(Integer customerID);
+
 }

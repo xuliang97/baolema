@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 /**
  * @author 徐亮
  */
-@RestControllerAdvice
+//@RestControllerAdvice
 public class ExceptionAdvice {
 
     @ExceptionHandler(BusinessException.class)

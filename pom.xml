@@ -87,8 +87,8 @@
         <!--aliyun支付-->
         <dependency>
             <groupId>com.alipay.sdk</groupId>
-            <artifactId>alipay-sdk-java</artifactId>
-            <version>4.10.209.ALL</version>
+            <artifactId>alipay-easysdk</artifactId>
+            <version>2.2.1</version>
         </dependency>
         <!-- 分页插件 -->
         <dependency>

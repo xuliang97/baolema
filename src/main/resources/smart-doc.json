@@ -1,0 +1,35 @@
+{
+  "pathPrefix": "",
+  "isStrict": false,
+  "allInOne": true,
+  "outPath": "F://baolema//md2",
+  "coverOld": true,
+  "createDebugPage": true,
+  "packageFilters": "",
+  "md5EncryptedHtmlName": false,
+  "style":"xt256",
+  "skipTransientField": true,
+  "sortByTitle":false,
+  "showAuthor":false,
+  "requestFieldToUnderline":true,
+  "responseFieldToUnderline":true,
+  "inlineEnum":true,
+  "recursionLimit":7,
+  "allInOneDocFileName":"index.html",
+  "requestExample":"true",
+  "responseExample":"true",
+  "revisionLogs": [{
+    "version": "1.1",
+    "revisionTime": "2023-03-20 12:00:00",
+    "status": "update",
+    "author": "blm",
+    "remarks": "init user api"
+  },{
+    "version": "1.2",
+    "revisionTime": "2023-03-20 12:00:10",
+    "status": "update",
+    "author": "blm",
+    "remarks": "add address api"
+  }
+  ]
+}

@@ -2,11 +2,14 @@ package com.cook.baolema.controller;
 
 import com.cook.baolema.pojo.Chef;
 import com.cook.baolema.pojo.Code;
+import com.cook.baolema.pojo.Customer;
 import com.cook.baolema.pojo.Result;
 import com.cook.baolema.service.ChefService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.web.bind.annotation.*;
 
+import javax.annotation.Resource;
 import java.util.Date;
 import java.util.List;
 
@@ -15,6 +18,26 @@ import java.util.List;
 public class ChefController {
     @Autowired
     private ChefService chefService;
+
+    @Resource
+    private RedisTemplate<String, Chef> redisTemplate;
+
+    @PostMapping("add")
+    public Result add(Chef chef){
+        redisTemplate.opsForValue().set(String.valueOf(chef.getChefID()),chef);
+        Integer code = chef != null ? Code.SAVE_OK : Code.SAVE_ERR;
+        String msg = chef != null ? "保存成功" : "保存失败";
+        return new Result (code,chef,msg);
+    }
+
+    @GetMapping("find/{id}")
+    public Result find(@PathVariable Integer id){
+        Chef chef = redisTemplate.opsForValue().get(id);
+        Integer code = chef != null ? Code.GET_OK : Code.GET_ERR;
+        String msg = chef != null ? "" : "数据查询失败，请重试！";
+        return new Result(code,chef,msg);
+    }
+
     @GetMapping
     public Result selectAll(){
         List<Chef> chefs = chefService.selectAll();

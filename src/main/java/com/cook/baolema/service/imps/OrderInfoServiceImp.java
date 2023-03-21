@@ -139,10 +139,11 @@ public class OrderInfoServiceImp implements OrderInfoService {
     }
 
     @Override
-
     public List<GradeNumber> selectGradeNumber() {
         return orderInfoDao.selectGradeNumber();
+    }
 
+    @Override
     public NumberAndAmount selectAmountAndNumberOfToday(String year, String month, String day) {
         return orderInfoDao.selectAmountAndNumberOfToday(year,month,day);
 

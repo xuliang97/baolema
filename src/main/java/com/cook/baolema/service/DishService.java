@@ -1,6 +1,7 @@
 package com.cook.baolema.service;
 
 import com.cook.baolema.pojo.Dish;
+import com.cook.baolema.respdata.DishNumber;
 
 import java.util.List;
 
@@ -15,4 +16,5 @@ public interface DishService {
     boolean save(Dish dish);
     List<Dish> selectByCategoryID(Integer categoryID);
     Dish selectByName(String name);
+    List<DishNumber> selectDishNumber();
 }

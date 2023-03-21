@@ -3,7 +3,6 @@ package com.cook.baolema.controller;
 import com.cook.baolema.respdata.Code;
 import com.cook.baolema.pojo.Dish;
 import com.cook.baolema.respdata.DishNumber;
-import com.cook.baolema.respdata.DishNumber2;
 import com.cook.baolema.respdata.Result;
 import com.cook.baolema.service.DishService;
 import org.springframework.beans.factory.annotation.Autowired;

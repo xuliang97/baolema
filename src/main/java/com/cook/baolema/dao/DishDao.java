@@ -2,7 +2,6 @@ package com.cook.baolema.dao;
 
 import com.cook.baolema.pojo.Dish;
 import com.cook.baolema.respdata.DishNumber;
-import com.cook.baolema.respdata.DishNumber2;
 import org.apache.ibatis.annotations.*;
 
 import java.util.List;

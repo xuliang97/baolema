@@ -1,6 +1,7 @@
 package com.cook.baolema.service;
 
 import com.cook.baolema.pojo.OrderInfo;
+import com.cook.baolema.respdata.GradeNumber;
 import com.cook.baolema.respdata.RespOrderDetail3;
 import com.github.pagehelper.PageInfo;
 
@@ -30,5 +31,7 @@ public interface OrderInfoService {
     Integer checkOrderIDByuuid(String uuid);
 
     boolean updateGrade(Integer orderID, Integer grade);
+
+    List<GradeNumber> selectGradeNumber();
 
 }

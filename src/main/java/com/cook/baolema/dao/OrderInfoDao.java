@@ -1,6 +1,7 @@
 package com.cook.baolema.dao;
 
 import com.cook.baolema.pojo.OrderInfo;
+import com.cook.baolema.respdata.GradeNumber;
 import org.apache.ibatis.annotations.*;
 
 import java.util.List;
@@ -44,5 +45,9 @@ public interface OrderInfoDao {
 
     @Select("select orderID from tb_order where uuid=#{uuid}")
     Integer checkOrderIDByuuid(String uuid);
+
+    //统计订单各星级数量
+    @Select("select grade,count(*) number from tb_order GROUP BY grade")
+    List<GradeNumber> selectGradeNumber();
 
 }

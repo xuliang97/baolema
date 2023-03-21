@@ -248,4 +248,11 @@ public class OrderInfoController {
         return new Result(Code.GET_OK, allOrderTotalAmount, "");
     }
 
+    @GetMapping("/gradenumber")
+    public Result selectGradeNumber(){
+        List<GradeNumber> gradeNumberList = orderInfoService.selectGradeNumber();
+        Integer code = gradeNumberList != null ? Code.GET_OK : Code.GET_ERR;
+        String msg = gradeNumberList != null ? "成功" : "数据查询失败，请重试！";
+        return new Result(code, gradeNumberList, msg);
+    }
 }

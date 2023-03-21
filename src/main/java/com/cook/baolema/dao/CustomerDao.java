@@ -14,7 +14,7 @@ public interface CustomerDao {
     @Select("select * from tb_customer where customerID=#{id}")
     Customer selectByID(Integer id);
 
-    @Insert("insert into tb_customer values (null,#{customer},#{gender},#{profilePhoto},#{phoneNumber},#{password},#{accumulatedAmount},#{createdTime})")
+    @Insert("insert into tb_customer values (null,#{customer},#{gender},#{profilePhoto},#{phoneNumber},#{password},#{accumulatedAmount},#{createdTime},#{rank})")
     int save(Customer c);
 
     @Update("update tb_customer set customer=#{customer},gender=#{gender},profilePhoto=#{profilePhoto},phoneNumber=#{phoneNumber},password=#{password},accumulatedAmount=#{accumulatedAmount},createdTime=#{createdTime} where customerID=#{customerID}")

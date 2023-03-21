@@ -150,4 +150,14 @@ public class OrderInfoServiceImp implements OrderInfoService {
     }
 
 
+    @Override
+    public Float getMonthTotalAmount() {
+        return orderInfoDao.getMonthTotalAmount();
+    }
+
+    @Override
+    public Integer getUnpreparedOrders() {
+        return orderInfoDao.getUnpreparedOrders();
+    }
+
 }

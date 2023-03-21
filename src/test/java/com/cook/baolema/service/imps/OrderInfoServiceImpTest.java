@@ -24,4 +24,14 @@ class OrderInfoServiceImpTest {
     void updateStatusByOrderID() {
         orderInfoService.updateStatusByOrderID(5, (short) 2);
     }
+
+    @Test
+    void getMonthTotalAmount() {
+        System.out.println(orderInfoService.getMonthTotalAmount());
+    }
+
+    @Test
+    void getUnpreparedOrders() {
+        System.out.println(orderInfoService.getUnpreparedOrders());
+    }
 }

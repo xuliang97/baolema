@@ -50,6 +50,12 @@ public interface OrderInfoDao {
     @Select("select orderID from tb_order where uuid=#{uuid}")
     Integer checkOrderIDByuuid(String uuid);
 
+    @Select("SELECT SUM(totalAmount) AS totalAmount FROM `tb_order` WHERE unix_timestamp(createdTime) >= unix_timestamp(date_sub(NOW(), interval 1 MONTH))")
+    Float getMonthTotalAmount();
+
+    @Select("select count(*) from tb_order where status=0")
+    Integer getUnpreparedOrders();
+
 
     //统计订单各星级数量
     @Select("select grade,count(*) number from tb_order GROUP BY grade")

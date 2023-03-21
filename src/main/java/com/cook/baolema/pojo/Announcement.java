@@ -16,6 +16,7 @@ public class Announcement {
 
     private Integer announcementID;
     private Short status;
+
     private String url;
     private Date createdTime;
 }

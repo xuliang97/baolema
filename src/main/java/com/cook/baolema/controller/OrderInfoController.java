@@ -1,6 +1,7 @@
 package com.cook.baolema.controller;
 
 import com.cook.baolema.pojo.*;
+import com.cook.baolema.respdata.*;
 import com.cook.baolema.service.DishService;
 import com.cook.baolema.service.OrderDetailService;
 import com.cook.baolema.service.OrderInfoService;
@@ -128,11 +129,18 @@ public class OrderInfoController {
         orderinfo.setTotalAmount(totalAmount);
         orderinfo.setCreatedTime(new Date());
 
+        //创建uuid
+        String uuid = UUID.randomUUID().toString().replace("-", "");
+        orderinfo.setUuid(uuid);
+        //System.out.println(uuid);
         boolean flag = orderInfoService.save(orderinfo);
-        System.out.println(flag);
+        //System.out.println(flag);
 
-        //根据customerId查orderId
-        Integer orderId = orderInfoService.checkOrderID(customerId);
+//        //根据customerId查orderId
+//        Integer orderId = orderInfoService.checkOrderID(customerId);
+
+        //根据uuid查orderID
+        Integer orderId = orderInfoService.checkOrderIDByuuid(uuid);
 
         ObjectMapper mapper = new ObjectMapper();
         List<OrderDetail> orderDetailList1 = (List<OrderDetail>)map.get("orderDetailList");
@@ -147,7 +155,7 @@ public class OrderInfoController {
             orderDetail.setDishID(od.getDishID());
 
             boolean flag1 = orderDetailService.save(orderDetail);
-            System.out.println(flag1);
+            //System.out.println(flag1);
         }
 
         return new Result(flag ? Code.SAVE_OK : Code.SAVE_ERR, flag, flag ? "保存成功！" : "保存失败！");

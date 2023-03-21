@@ -1,4 +1,4 @@
-package com.cook.baolema.pojo;
+package com.cook.baolema.respdata;
 
 public class Status {
     public static short confirming = 0;

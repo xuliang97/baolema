@@ -4,6 +4,9 @@ import com.cook.baolema.dao.DishDao;
 import com.cook.baolema.dao.OrderDetailDao;
 import com.cook.baolema.dao.OrderInfoDao;
 import com.cook.baolema.pojo.*;
+import com.cook.baolema.respdata.OrderInfo2;
+import com.cook.baolema.respdata.RespOrderDetail;
+import com.cook.baolema.respdata.RespOrderDetail3;
 import com.cook.baolema.service.OrderInfoService;
 import com.cook.baolema.utils.Status2Message;
 import com.github.pagehelper.Page;
@@ -117,6 +120,11 @@ public class OrderInfoServiceImp implements OrderInfoService {
     @Override
     public List<OrderInfo> selectHistoryOrder(Integer customerID) {
         return orderInfoDao.selectHistoryOrder(customerID);
+    }
+
+    @Override
+    public Integer checkOrderIDByuuid(String uuid) {
+        return orderInfoDao.checkOrderIDByuuid(uuid);
     }
 
     @Override

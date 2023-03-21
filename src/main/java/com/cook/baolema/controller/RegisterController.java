@@ -1,15 +1,14 @@
 package com.cook.baolema.controller;
 
-import com.cook.baolema.pojo.Code;
+import com.cook.baolema.respdata.Code;
 import com.cook.baolema.pojo.Customer;
-import com.cook.baolema.pojo.Result;
+import com.cook.baolema.respdata.Result;
 import com.cook.baolema.service.CustomerService;
 import com.cook.baolema.utils.RandomNumberGenerator;
 import com.cook.baolema.utils.SmsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import javax.security.auth.Subject;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.util.Date;

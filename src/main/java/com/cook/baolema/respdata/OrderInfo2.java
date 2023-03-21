@@ -1,4 +1,4 @@
-package com.cook.baolema.pojo;
+package com.cook.baolema.respdata;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

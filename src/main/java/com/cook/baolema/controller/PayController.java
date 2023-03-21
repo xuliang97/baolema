@@ -4,21 +4,15 @@ package com.cook.baolema.controller;
 import com.alipay.easysdk.factory.Factory;
 import com.alipay.easysdk.payment.page.models.AlipayTradePagePayResponse;
 import com.cook.baolema.pojo.AliPay;
-import com.cook.baolema.pojo.Code;
-import com.cook.baolema.pojo.Result;
-import org.springframework.stereotype.Controller;
+import com.cook.baolema.respdata.Code;
+import com.cook.baolema.respdata.Result;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import java.io.IOException;
-import java.io.PrintWriter;
 import java.net.URLEncoder;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 

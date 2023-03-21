@@ -36,7 +36,7 @@ public class LoginController {
             HttpSession session = request.getSession();
             session.setAttribute("managerInfo",manager);
         }
-        return new Result(code, null, msg);
+        return new Result(code, manager.getManagerID(), msg);
 
     }
     @PostMapping("/customer")
@@ -54,7 +54,7 @@ public class LoginController {
             HttpSession session = request.getSession();
             session.setAttribute("customerInfo",customer);
         }
-        return new Result(code, null, msg);
+        return new Result(code,customer.getCustomerID(), msg);
 
     }
     @PostMapping("/chef")
@@ -68,7 +68,7 @@ public class LoginController {
             HttpSession session = request.getSession();
             session.setAttribute("chefInfo",chef);
         }
-        return new Result(code, null, msg);
+        return new Result(code, chef.getChefID(), msg);
     }
 
 

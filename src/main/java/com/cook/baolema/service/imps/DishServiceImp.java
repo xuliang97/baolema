@@ -2,6 +2,7 @@ package com.cook.baolema.service.imps;
 
 import com.cook.baolema.dao.DishDao;
 import com.cook.baolema.pojo.Dish;
+import com.cook.baolema.respdata.DishNumber;
 import com.cook.baolema.service.DishService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -48,6 +49,11 @@ public class DishServiceImp implements DishService {
     @Override
     public Dish selectByName(String name) {
         return dishDao.selectByName(name);
+    }
+
+    @Override
+    public List<DishNumber> selectDishNumber() {
+        return dishDao.selectDishNumber();
     }
 
 

@@ -1,6 +1,7 @@
 package com.cook.baolema.dao;
 
 import com.cook.baolema.pojo.Dish;
+import com.cook.baolema.respdata.DishNumber;
 import org.apache.ibatis.annotations.*;
 
 import java.util.List;
@@ -53,4 +54,8 @@ public interface DishDao {
      */
     @Select("select * from tb_dish where dish=#{dish} and deleted=0")
     Dish selectByName(String name);
+
+    //统计各菜品被点单数量
+    @Select("select dishID,sum(number) number from tb_order_detail GROUP BY dishID")
+    List<DishNumber> selectDishNumber();
 }

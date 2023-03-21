@@ -18,6 +18,8 @@ import java.util.List;
 public class DishController {
     @Autowired
     private DishService dishService;
+
+
     @GetMapping
     public Result selectAll(){
 

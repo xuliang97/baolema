@@ -20,6 +20,8 @@ public class OrderInfo implements Serializable, Comparable<OrderInfo> {
     private Date createdTime;
     private String uuid;
 
+    private Integer grade;
+
     @Override
     public int compareTo(OrderInfo o) {
         return 0;

@@ -2,6 +2,8 @@ package com.cook.baolema.controller;
 
 import com.cook.baolema.respdata.Code;
 import com.cook.baolema.pojo.Dish;
+import com.cook.baolema.respdata.DishNumber;
+import com.cook.baolema.respdata.DishNumber2;
 import com.cook.baolema.respdata.Result;
 import com.cook.baolema.service.DishService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -77,4 +79,18 @@ public class DishController {
         return new Result(code,dish,msg);
     }
 
+    @GetMapping("/dishnumber")
+    public Result selectDishNumber(){
+       List<DishNumber> dishNumberList = dishService.selectDishNumber();
+       for(DishNumber dn: dishNumberList){
+           Integer dishID = dn.getDishID();
+           Dish dish = dishService.selectByID(dishID);
+           String dishName = dish.getDish();
+
+           dn.setDishName(dishName);
+       }
+       Integer code = dishNumberList != null ? Code.GET_OK : Code.GET_ERR;
+       String msg = dishNumberList != null ? "" : "数据查询失败，请重试！";
+       return new Result(code,dishNumberList,msg);
+    }
 }

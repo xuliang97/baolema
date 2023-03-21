@@ -1,7 +1,7 @@
 package com.cook.baolema.controller;
 
-import com.cook.baolema.pojo.Code;
-import com.cook.baolema.pojo.Result;
+import com.cook.baolema.respdata.Code;
+import com.cook.baolema.respdata.Result;
 import com.cook.baolema.pojo.UpdatePassword;
 import com.cook.baolema.service.ChefService;
 import com.cook.baolema.service.CustomerService;

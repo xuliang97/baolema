@@ -1,8 +1,8 @@
 package com.cook.baolema.controller;
 
 import com.cook.baolema.pojo.*;
-import com.cook.baolema.pojo.Code;
-import com.cook.baolema.pojo.Result;
+import com.cook.baolema.respdata.Code;
+import com.cook.baolema.respdata.Result;
 import com.cook.baolema.service.ChefService;
 import com.cook.baolema.service.CustomerService;
 import com.cook.baolema.service.ManagerService;
@@ -38,7 +38,7 @@ public class LoginController {
             HttpSession session = request.getSession();
             session.setAttribute("managerInfo",manager);
         }
-        return new Result(code, null, msg);
+        return new Result(code, manager.getManagerID(), msg);
 
     }
     @PostMapping("/customer")
@@ -56,7 +56,7 @@ public class LoginController {
             HttpSession session = request.getSession();
             session.setAttribute("customerInfo",customer);
         }
-        return new Result(code, null, msg);
+        return new Result(code,customer.getCustomerID(), msg);
 
     }
     @PostMapping("/chef")
@@ -70,7 +70,7 @@ public class LoginController {
             HttpSession session = request.getSession();
             session.setAttribute("chefInfo",chef);
         }
-        return new Result(code, null, msg);
+        return new Result(code, chef.getChefID(), msg);
     }
 
 

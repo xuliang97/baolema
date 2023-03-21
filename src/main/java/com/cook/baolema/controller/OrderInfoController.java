@@ -1,6 +1,7 @@
 package com.cook.baolema.controller;
 
 import com.cook.baolema.pojo.*;
+import com.cook.baolema.respdata.*;
 import com.cook.baolema.service.DishService;
 import com.cook.baolema.service.OrderDetailService;
 import com.cook.baolema.service.OrderInfoService;
@@ -108,6 +109,8 @@ public class OrderInfoController {
     @PostMapping
     public Result save(@RequestBody OrderInfo orderInfo) {
         orderInfo.setCreatedTime(new Date());
+        String uuid = UUID.randomUUID().toString().replace("-", "");
+        orderInfo.setUuid(uuid);
         boolean flag = orderInfoService.save(orderInfo);
         return new Result(flag ? Code.SAVE_OK : Code.SAVE_ERR, flag, flag ? "保存成功！" : "保存失败！");
 

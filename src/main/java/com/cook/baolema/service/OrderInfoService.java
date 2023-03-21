@@ -1,20 +1,25 @@
 package com.cook.baolema.service;
 
 import com.cook.baolema.pojo.OrderInfo;
-import com.cook.baolema.pojo.RespOrderDetail3;
+import com.cook.baolema.respdata.RespOrderDetail3;
 import com.github.pagehelper.PageInfo;
 
 import java.util.List;
 
 public interface OrderInfoService {
     List<OrderInfo> selectAll();
-    List<OrderInfo> selectLimit(short status,Integer limit);
+
+    List<OrderInfo> selectLimit(short status, Integer limit);
+
     OrderInfo selectByID(Integer id);
+
     boolean update(OrderInfo orderInfo);
+
     boolean save(OrderInfo orderInfo);
+
     boolean deleteByID(Integer id);
 
-    boolean updateStatusByOrderID(Integer orderID,short status);
+    boolean updateStatusByOrderID(Integer orderID, short status);
 
     PageInfo<RespOrderDetail3> selectAllByPage(int pageNum, int pageSize);
 
@@ -23,5 +28,7 @@ public interface OrderInfoService {
     List<OrderInfo> selectHistoryOrder(Integer customerID);
 
     Integer checkOrderIDByuuid(String uuid);
+
+    boolean updateGrade(Integer orderID, Integer grade);
 
 }

@@ -34,4 +34,9 @@ public interface CustomerDao {
 
     @Update("update tb_customer set password=#{password} where customerID=#{customerID}")
     int updatePwd(String password,Integer customerID);
+
+    /*
+    *根据用户id更新会员等级
+    */
+
 }

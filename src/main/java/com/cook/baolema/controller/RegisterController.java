@@ -1,8 +1,8 @@
 package com.cook.baolema.controller;
 
-import com.cook.baolema.pojo.Code;
+import com.cook.baolema.respdata.Code;
 import com.cook.baolema.pojo.Customer;
-import com.cook.baolema.pojo.Result;
+import com.cook.baolema.respdata.Result;
 import com.cook.baolema.service.CustomerService;
 import com.cook.baolema.utils.RandomNumberGenerator;
 import com.cook.baolema.utils.SmsService;

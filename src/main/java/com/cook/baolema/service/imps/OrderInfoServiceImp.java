@@ -4,9 +4,9 @@ import com.cook.baolema.dao.DishDao;
 import com.cook.baolema.dao.OrderDetailDao;
 import com.cook.baolema.dao.OrderInfoDao;
 import com.cook.baolema.pojo.*;
-import com.cook.baolema.pojo.OrderInfo2;
-import com.cook.baolema.pojo.RespOrderDetail;
-import com.cook.baolema.pojo.RespOrderDetail3;
+import com.cook.baolema.respdata.OrderInfo2;
+import com.cook.baolema.respdata.RespOrderDetail;
+import com.cook.baolema.respdata.RespOrderDetail3;
 import com.cook.baolema.service.OrderInfoService;
 import com.cook.baolema.utils.Status2Message;
 import com.github.pagehelper.Page;
@@ -72,7 +72,7 @@ public class OrderInfoServiceImp implements OrderInfoService {
 
         List<RespOrderDetail3> respOrderDetail3List = new ArrayList<>();
 
-        for(OrderInfo oi: orderInfos){
+        for (OrderInfo oi : orderInfos) {
             RespOrderDetail3 respOrderDetail3 = new RespOrderDetail3();
 
             OrderInfo2 orderInfo2 = new OrderInfo2();
@@ -91,7 +91,7 @@ public class OrderInfoServiceImp implements OrderInfoService {
             Integer orderID = oi.getOrderID();
             List<OrderDetail> orderDetails = orderDetailDao.selectByOrderID(orderID);
 
-            for(OrderDetail od: orderDetails){
+            for (OrderDetail od : orderDetails) {
                 RespOrderDetail respOrderDetail = new RespOrderDetail();
                 respOrderDetail.setDishAmount(od.getDishAmount());
                 respOrderDetail.setNumber(od.getNumber());
@@ -127,5 +127,9 @@ public class OrderInfoServiceImp implements OrderInfoService {
         return orderInfoDao.checkOrderIDByuuid(uuid);
     }
 
+    @Override
+    public boolean updateGrade(Integer orderID, Integer grade) {
+        return orderInfoDao.updateGrade(orderID, grade) > 0;
+    }
 
 }

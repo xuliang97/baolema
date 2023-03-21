@@ -1,7 +1,5 @@
-package com.cook.baolema.pojo;
+package com.cook.baolema.respdata;
 
-import com.cook.baolema.pojo.OrderInfo2;
-import com.cook.baolema.pojo.RespOrderDetail;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;

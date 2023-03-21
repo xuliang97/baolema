@@ -1,8 +1,8 @@
 package com.cook.baolema.controller;
 
 import com.cook.baolema.pojo.Chef;
-import com.cook.baolema.pojo.Code;
-import com.cook.baolema.pojo.Result;
+import com.cook.baolema.respdata.Code;
+import com.cook.baolema.respdata.Result;
 import com.cook.baolema.service.ChefService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;

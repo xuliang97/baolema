@@ -1,8 +1,8 @@
 package com.cook.baolema.controller;
 
 import com.cook.baolema.pojo.Announcement;
-import com.cook.baolema.pojo.Result;
-import com.cook.baolema.pojo.Code;
+import com.cook.baolema.respdata.Result;
+import com.cook.baolema.respdata.Code;
 import com.cook.baolema.service.AnnouncementService;
 
 import org.springframework.beans.factory.annotation.Autowired;

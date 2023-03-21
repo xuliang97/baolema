@@ -3,7 +3,6 @@ package com.cook.baolema.exceptions;
 import com.cook.baolema.pojo.Code;
 import com.cook.baolema.pojo.Result;
 import org.springframework.web.bind.annotation.ExceptionHandler;
-import org.springframework.web.bind.annotation.RestControllerAdvice;
 
 /**
  * @author 徐亮

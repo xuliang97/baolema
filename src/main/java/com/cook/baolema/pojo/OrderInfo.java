@@ -19,6 +19,7 @@ public class OrderInfo implements Serializable, Comparable<OrderInfo> {
     private Float totalAmount;
     private Date createdTime;
     private String uuid;
+    private Integer grade;
 
     @Override
     public int compareTo(OrderInfo o) {

@@ -2,7 +2,6 @@ package com.cook.baolema.controller;
 
 import com.cook.baolema.pojo.Chef;
 import com.cook.baolema.pojo.Code;
-import com.cook.baolema.pojo.Customer;
 import com.cook.baolema.pojo.Result;
 import com.cook.baolema.service.ChefService;
 import org.springframework.beans.factory.annotation.Autowired;

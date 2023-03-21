@@ -1,6 +1,8 @@
 package com.cook.baolema.controller;
 
 import com.cook.baolema.pojo.*;
+import com.cook.baolema.pojo.Code;
+import com.cook.baolema.pojo.Result;
 import com.cook.baolema.service.ChefService;
 import com.cook.baolema.service.CustomerService;
 import com.cook.baolema.service.ManagerService;

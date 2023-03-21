@@ -1,6 +1,5 @@
 package com.cook.baolema.service;
 
-import com.cook.baolema.pojo.Customer;
 import com.cook.baolema.pojo.OrderInfo;
 import com.cook.baolema.pojo.RespOrderDetail3;
 import com.github.pagehelper.PageInfo;
@@ -22,5 +21,7 @@ public interface OrderInfoService {
     Integer checkOrderID(Integer customerID);
 
     List<OrderInfo> selectHistoryOrder(Integer customerID);
+
+    Integer checkOrderIDByuuid(String uuid);
 
 }

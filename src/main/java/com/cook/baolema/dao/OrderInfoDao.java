@@ -16,10 +16,12 @@ public interface OrderInfoDao {
     @Select("select * from tb_order where orderID=#{id}")
     OrderInfo selectByID(Integer id);
 
-    @Insert("insert into tb_order values (null,#{customerID},#{status},#{userRatings},#{totalAmount},#{createdTime},#{chefID})")
+    //insert into tb_order values (null,5,0,null,73.5,CURRENT_DATE,null,'1324',5)
+    //insert into tb_order(orderID,customerID,`status`,userRatings,totalAmount,createdTime,chefID,uuid,grade) values (null,5,0,null,73.5,CURRENT_DATE,null,'132d4',5)
+    @Insert("insert into tb_order(orderID,customerID,status,userRatings,totalAmount,createdTime,chefID,uuid,grade) values (null,#{customerID},#{status},null,#{totalAmount},#{createdTime},#{chefID},#{uuid},#{grade})")
     int save(OrderInfo newOrderInfo);
 
-    @Update("update tb_order set customerID=#{customerID},status=#{status},userRatings=#{userRatings},totalAmount=#{totalAmount},createdTime=#{createdTime},chefID=#{chefID} where orderID=#{orderID}")
+    @Update("update tb_order set customerID=#{customerID},status=#{status},userRatings=#{userRatings},totalAmount=#{totalAmount},createdTime=#{createdTime},chefID=#{chefID},grade=#{grade} where orderID=#{orderID}")
     int update(OrderInfo newOrderInfo);
 
     @Delete("delete from tb_order where orderID=#{id}")
@@ -34,5 +36,8 @@ public interface OrderInfoDao {
 
     @Select("select * from tb_order where customerID=#{customerID}")
     List<OrderInfo> selectHistoryOrder(Integer customerID);
+
+    @Select("select orderID from tb_order where uuid=#{uuid}")
+    Integer checkOrderIDByuuid(String uuid);
 
 }

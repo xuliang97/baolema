@@ -24,19 +24,29 @@ public interface CustomerDao {
     int deleteByID(Integer id);
 
     @Select("select * from tb_customer where phoneNumber=#{phoneNumber} and password=#{password}")
-    Customer selectByPhoneAndPwd(@Param("phoneNumber")String phoneNumber, @Param("password")String password);
+    Customer selectByPhoneAndPwd(@Param("phoneNumber") String phoneNumber, @Param("password") String password);
 
     /*
-    * 按手机号查询
-    * */
+     * 按手机号查询
+     * */
     @Select("select * from tb_customer where phoneNumber=#{phoneNumber}")
     Customer selectByPhoneNumber(String phoneNumber);
 
     @Update("update tb_customer set password=#{password} where customerID=#{customerID}")
-    int updatePwd(String password,Integer customerID);
+    int updatePwd(String password, Integer customerID);
 
     /*
-    *根据用户id更新会员等级
-    */
+     *根据用户id更新会员等级
+     */
+
+    @Update("update tb_customer set rank=#{rank} where customerID=#{customerID}")
+    int updateRankByCustomerID(Integer customerID, Integer rank);
+
+    /**
+     * 根据更新用户累计金额
+     */
+
+    @Update("update tb_customer set accumulatedAmount = accumulatedAmount + #{amount} where customerID=#{customerID}")
+    int updateAccumulatedAmountByCustomerID(Integer customerID, Float amount);
 
 }

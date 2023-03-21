@@ -27,22 +27,22 @@ public class CustomerServiceImp implements CustomerService {
 
     @Override
     public boolean update(Customer customer) {
-        return customerDao.update(customer)>0;
+        return customerDao.update(customer) > 0;
     }
 
     @Override
     public boolean save(Customer customer) {
-        return customerDao.save(customer)>0;
+        return customerDao.save(customer) > 0;
     }
 
     @Override
     public boolean deleteByID(Integer id) {
-        return customerDao.deleteByID(id)>0;
+        return customerDao.deleteByID(id) > 0;
     }
 
     @Override
     public Customer selectByPhoneAndPwd(String phoneNumber, String password) {
-        return customerDao.selectByPhoneAndPwd(phoneNumber,password);
+        return customerDao.selectByPhoneAndPwd(phoneNumber, password);
     }
 
     @Override
@@ -52,7 +52,7 @@ public class CustomerServiceImp implements CustomerService {
 
     @Override
     public PageInfo<Customer> selectAllByPage(int pageNum, int pageSize) {
-        PageHelper.startPage(pageNum,pageSize);
+        PageHelper.startPage(pageNum, pageSize);
         List<Customer> customers = customerDao.selectAll();
         PageInfo<Customer> pageInfo = new PageInfo<Customer>(customers);
         return pageInfo;
@@ -60,7 +60,17 @@ public class CustomerServiceImp implements CustomerService {
 
     @Override
     public boolean updatePwd(String password, Integer customerID) {
-        return customerDao.updatePwd(password,customerID)>0;
+        return customerDao.updatePwd(password, customerID) > 0;
+    }
+
+    @Override
+    public boolean updateRankByCustomerID(Integer customerID, Integer rank) {
+        return customerDao.updateRankByCustomerID(customerID, rank) > 0;
+    }
+
+    @Override
+    public boolean updateAccumulatedAmountByCustomerID(Integer customerID, Float amount) {
+        return customerDao.updateAccumulatedAmountByCustomerID(customerID, amount) > 0;
     }
 
 }

@@ -4,6 +4,7 @@ import com.cook.baolema.dao.DishDao;
 import com.cook.baolema.dao.OrderDetailDao;
 import com.cook.baolema.dao.OrderInfoDao;
 import com.cook.baolema.pojo.*;
+import com.cook.baolema.respdata.NumberAndAmount;
 import com.cook.baolema.respdata.OrderInfo2;
 import com.cook.baolema.respdata.RespOrderDetail;
 import com.cook.baolema.respdata.RespOrderDetail3;
@@ -20,6 +21,7 @@ import java.util.List;
 
 @Service
 public class OrderInfoServiceImp implements OrderInfoService {
+
     @Autowired
     private OrderInfoDao orderInfoDao;
 
@@ -131,5 +133,11 @@ public class OrderInfoServiceImp implements OrderInfoService {
     public boolean updateGrade(Integer orderID, Integer grade) {
         return orderInfoDao.updateGrade(orderID, grade) > 0;
     }
+
+    @Override
+    public NumberAndAmount selectAmountAndNumberOfToday(String year, String month, String day) {
+        return orderInfoDao.selectAmountAndNumberOfToday(year,month,day);
+    }
+
 
 }

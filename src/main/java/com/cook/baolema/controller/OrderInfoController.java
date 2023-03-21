@@ -9,7 +9,10 @@ import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.web.bind.annotation.*;
+
+import javax.annotation.Resource;
 import java.util.*;
 
 @RestController
@@ -23,6 +26,25 @@ public class OrderInfoController {
 
     @Autowired
     private DishService dishService;
+
+    @Resource
+    private RedisTemplate<String, OrderInfo> redisTemplate;
+
+    @PostMapping("add")
+    public Result add(OrderInfo orderInfo){
+        redisTemplate.opsForValue().set(String.valueOf(orderInfo.getChefID()),orderInfo);
+        Integer code = orderInfo != null ? Code.SAVE_OK : Code.SAVE_ERR;
+        String msg = orderInfo != null ? "保存成功" : "保存失败";
+        return new Result (code,orderInfo,msg);
+    }
+
+    @GetMapping("find/{id}")
+    public Result find(@PathVariable Integer id){
+        OrderInfo orderInfo = redisTemplate.opsForValue().get(id);
+        Integer code = orderInfo != null ? Code.GET_OK : Code.GET_ERR;
+        String msg = orderInfo != null ? "" : "数据查询失败，请重试！";
+        return new Result(code,orderInfo,msg);
+    }
 
     @GetMapping
     public Result selectAll() {

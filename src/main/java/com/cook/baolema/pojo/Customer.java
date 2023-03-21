@@ -18,4 +18,5 @@ public class Customer {
     private String password;
     private Float accumulatedAmount;
     private Date createdTime;
+    private Integer rank;
 }

@@ -31,4 +31,8 @@ public interface OrderInfoService {
 
     boolean updateGrade(Integer orderID, Integer grade);
 
+    Float getMonthTotalAmount();
+
+    Integer getUnpreparedOrders();
+
 }

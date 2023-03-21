@@ -32,19 +32,19 @@ public class OrderInfoController {
     private RedisTemplate<String, OrderInfo> redisTemplate;
 
     @PostMapping("add")
-    public Result add(OrderInfo orderInfo){
-        redisTemplate.opsForValue().set(String.valueOf(orderInfo.getChefID()),orderInfo);
+    public Result add(OrderInfo orderInfo) {
+        redisTemplate.opsForValue().set(String.valueOf(orderInfo.getChefID()), orderInfo);
         Integer code = orderInfo != null ? Code.SAVE_OK : Code.SAVE_ERR;
         String msg = orderInfo != null ? "保存成功" : "保存失败";
-        return new Result (code,orderInfo,msg);
+        return new Result(code, orderInfo, msg);
     }
 
     @GetMapping("find/{id}")
-    public Result find(@PathVariable Integer id){
+    public Result find(@PathVariable Integer id) {
         OrderInfo orderInfo = redisTemplate.opsForValue().get(id);
         Integer code = orderInfo != null ? Code.GET_OK : Code.GET_ERR;
         String msg = orderInfo != null ? "" : "数据查询失败，请重试！";
-        return new Result(code,orderInfo,msg);
+        return new Result(code, orderInfo, msg);
     }
 
     @GetMapping
@@ -117,12 +117,12 @@ public class OrderInfoController {
     }
 
     @PostMapping("/submit")
-    public Result submit(@RequestBody Map<String,Object> map){
+    public Result submit(@RequestBody Map<String, Object> map) {
         OrderInfo orderinfo = new OrderInfo();
 
-        Integer customerId = (Integer)map.get("customerID");
-        Short status = ((Integer)map.get("status")).shortValue();
-        Float totalAmount = ((Double)map.get("totalAmount")).floatValue();
+        Integer customerId = (Integer) map.get("customerID");
+        Short status = ((Integer) map.get("status")).shortValue();
+        Float totalAmount = ((Double) map.get("totalAmount")).floatValue();
 
         orderinfo.setCustomerID(customerId);
         orderinfo.setStatus(status);
@@ -143,10 +143,11 @@ public class OrderInfoController {
         Integer orderId = orderInfoService.checkOrderIDByuuid(uuid);
 
         ObjectMapper mapper = new ObjectMapper();
-        List<OrderDetail> orderDetailList1 = (List<OrderDetail>)map.get("orderDetailList");
-        List<OrderDetail> orderDetailList2 = mapper.convertValue(orderDetailList1, new TypeReference<List<OrderDetail>>() { });
+        List<OrderDetail> orderDetailList1 = (List<OrderDetail>) map.get("orderDetailList");
+        List<OrderDetail> orderDetailList2 = mapper.convertValue(orderDetailList1, new TypeReference<List<OrderDetail>>() {
+        });
 
-        for(OrderDetail od : orderDetailList2){
+        for (OrderDetail od : orderDetailList2) {
             OrderDetail orderDetail = new OrderDetail();
 
             orderDetail.setOrderID(orderId);
@@ -169,10 +170,10 @@ public class OrderInfoController {
     }
 
     @PostMapping("/updatestatus")
-    public Result updateStatusByOrderID(Integer orderId, Integer status) {
+    public Result updateStatusByOrderID(Integer orderID, Integer status) {
 //        System.out.println(status);
         int i = status.intValue();
-        boolean flag = orderInfoService.updateStatusByOrderID(orderId,(short)i);
+        boolean flag = orderInfoService.updateStatusByOrderID(orderID, (short) i);
         return new Result(flag ? Code.UPDATE_OK : Code.UPDATE_ERR, flag, flag ? "修改成功！" : "修改失败！");
     }
 
@@ -195,7 +196,7 @@ public class OrderInfoController {
     }
 
     @GetMapping("/bycustomerID/{id}")
-    public Result selectByCustomerID(@PathVariable Integer id){
+    public Result selectByCustomerID(@PathVariable Integer id) {
         Integer orderID = orderInfoService.checkOrderID(id);
         Short status = 0;
         List<OrderDetail> orderDetailList = orderDetailService.selectByOrderID(orderID);
@@ -203,7 +204,7 @@ public class OrderInfoController {
         String msg = orderDetailList != null ? "成功" : "数据查询失败，请重试！";
         List<RespOrderDetail2> respOrderDetail2List = new ArrayList<>();
 
-        for(OrderDetail od : orderDetailList){
+        for (OrderDetail od : orderDetailList) {
             Integer dishID = od.getDishID();
             Dish dish = dishService.selectByID(dishID);
             String dishName = dish.getDish();
@@ -221,16 +222,16 @@ public class OrderInfoController {
             respOrderDetail2List.add(respOrderDetail2);
         }
 
-        HashMap<String,Object> respInfo = new HashMap<>();
-        respInfo.put("orderID",orderID);
-        respInfo.put("status",status);
-        respInfo.put("orderDetailList",respOrderDetail2List);
+        HashMap<String, Object> respInfo = new HashMap<>();
+        respInfo.put("orderID", orderID);
+        respInfo.put("status", status);
+        respInfo.put("orderDetailList", respOrderDetail2List);
 
         return new Result(code, respInfo, msg);
     }
 
     @GetMapping("/orderhistory/{id}")
-    public Result selectOrderHistory(@PathVariable Integer id){
+    public Result selectOrderHistory(@PathVariable Integer id) {
         List<OrderInfo> orderInfos = orderInfoService.selectHistoryOrder(id);
         Integer code = orderInfos != null ? Code.GET_OK : Code.GET_ERR;
         String msg = orderInfos != null ? "成功" : "数据查询失败，请重试！";
@@ -238,6 +239,13 @@ public class OrderInfoController {
         List<OrderInfo> historyOrder = SortList.search(orderInfos);
 
         return new Result(code, historyOrder, msg);
+    }
+
+    @GetMapping("/monthtotalamount")
+    public Result getMonthTotalAmount() {
+        Float allOrderTotalAmount = orderInfoService.getMonthTotalAmount();
+
+        return new Result(Code.GET_OK, allOrderTotalAmount, "");
     }
 
 }

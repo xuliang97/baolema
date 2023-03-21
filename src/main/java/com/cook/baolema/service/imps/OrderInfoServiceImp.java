@@ -132,4 +132,14 @@ public class OrderInfoServiceImp implements OrderInfoService {
         return orderInfoDao.updateGrade(orderID, grade) > 0;
     }
 
+    @Override
+    public Float getMonthTotalAmount() {
+        return orderInfoDao.getMonthTotalAmount();
+    }
+
+    @Override
+    public Integer getUnpreparedOrders() {
+        return orderInfoDao.getUnpreparedOrders();
+    }
+
 }

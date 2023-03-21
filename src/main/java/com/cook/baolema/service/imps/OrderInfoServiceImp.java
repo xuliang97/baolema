@@ -4,7 +4,11 @@ import com.cook.baolema.dao.DishDao;
 import com.cook.baolema.dao.OrderDetailDao;
 import com.cook.baolema.dao.OrderInfoDao;
 import com.cook.baolema.pojo.*;
+
+import com.cook.baolema.respdata.GradeNumber;
+
 import com.cook.baolema.respdata.NumberAndAmount;
+
 import com.cook.baolema.respdata.OrderInfo2;
 import com.cook.baolema.respdata.RespOrderDetail;
 import com.cook.baolema.respdata.RespOrderDetail3;
@@ -135,8 +139,13 @@ public class OrderInfoServiceImp implements OrderInfoService {
     }
 
     @Override
+
+    public List<GradeNumber> selectGradeNumber() {
+        return orderInfoDao.selectGradeNumber();
+
     public NumberAndAmount selectAmountAndNumberOfToday(String year, String month, String day) {
         return orderInfoDao.selectAmountAndNumberOfToday(year,month,day);
+
     }
 
 

@@ -1,7 +1,11 @@
 package com.cook.baolema.dao;
 
 import com.cook.baolema.pojo.OrderInfo;
+
+import com.cook.baolema.respdata.GradeNumber;
+
 import com.cook.baolema.respdata.NumberAndAmount;
+
 import org.apache.ibatis.annotations.*;
 
 import java.util.List;
@@ -46,6 +50,12 @@ public interface OrderInfoDao {
     @Select("select orderID from tb_order where uuid=#{uuid}")
     Integer checkOrderIDByuuid(String uuid);
 
+
+    //统计订单各星级数量
+    @Select("select grade,count(*) number from tb_order GROUP BY grade")
+    List<GradeNumber> selectGradeNumber();
+
+
     /*
     * 查询今日订单数
     * */
@@ -54,4 +64,5 @@ public interface OrderInfoDao {
 
     @Select("select count(*) as orderNumberOfToday,sum(totalAmount) as orderAmountOfToday from tb_order where Year(createdTime)=#{year} and Month(createdTime)=#{month} and Day(createdTime)=#{day}")
     NumberAndAmount selectAmountAndNumberOfToday(@Param("year") String year, @Param("month") String month, @Param("day") String day);
+
 }

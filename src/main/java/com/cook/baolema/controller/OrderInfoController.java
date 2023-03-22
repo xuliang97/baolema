@@ -255,4 +255,20 @@ public class OrderInfoController {
         String msg = gradeNumberList != null ? "成功" : "数据查询失败，请重试！";
         return new Result(code, gradeNumberList, msg);
     }
+
+    @GetMapping("/orderdetail/{id}")
+    public Result getOrderAndDetail(@PathVariable Integer id){
+        OrderInfo orderInfo = orderInfoService.selectByID(id);
+
+        List<RespOrderDetail2> respOrderDetail2s = dishService.selectDishAndOrderDetail(id);
+        RespOrderInfo2 respOrderInfo2 = new RespOrderInfo2();
+
+        respOrderInfo2.setOrderId(id);
+        respOrderInfo2.setStatus(orderInfo.getStatus());
+        respOrderInfo2.setUuid(orderInfo.getUuid());
+        respOrderInfo2.setCreatedTime(orderInfo.getCreatedTime());
+        respOrderInfo2.setTotalAmount(orderInfo.getTotalAmount());
+        respOrderInfo2.setOrderDetailList2(respOrderDetail2s);
+        return new Result(Code.GET_OK,respOrderInfo2,"");
+    }
 }

@@ -2,6 +2,7 @@ package com.cook.baolema.dao;
 
 import com.cook.baolema.pojo.Dish;
 import com.cook.baolema.respdata.DishNumber;
+import com.cook.baolema.respdata.RespOrderDetail2;
 import org.apache.ibatis.annotations.*;
 
 import java.util.List;
@@ -58,4 +59,7 @@ public interface DishDao {
     //统计各菜品被点单数量
     @Select("select dishID,sum(number) number from tb_order_detail GROUP BY dishID")
     List<DishNumber> selectDishNumber();
+
+    @Select("select dish as dishName,number,description,dishPhoto,dishAmount from tb_dish,tb_order_detail where tb_dish.dishID=tb_order_detail.dishID and orderID=#{id}")
+    List<RespOrderDetail2> selectDishAndOrderDetail(Integer id);
 }

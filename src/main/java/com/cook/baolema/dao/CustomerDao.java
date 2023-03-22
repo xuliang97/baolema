@@ -26,9 +26,9 @@ public interface CustomerDao {
     @Select("select * from tb_customer where phoneNumber=#{phoneNumber} and password=#{password}")
     Customer selectByPhoneAndPwd(@Param("phoneNumber") String phoneNumber, @Param("password") String password);
 
-    /*
+    /**
      * 按手机号查询
-     * */
+     */
     @Select("select * from tb_customer where phoneNumber=#{phoneNumber}")
     Customer selectByPhoneNumber(String phoneNumber);
 
@@ -36,7 +36,7 @@ public interface CustomerDao {
     int updatePwd(String password, Integer customerID);
 
     /*
-     *根据用户id更新会员等级
+     * 根据用户id更新会员等级
      */
 
     @Update("update tb_customer set rank=#{rank} where customerID=#{customerID}")

@@ -118,6 +118,7 @@ public class OrderInfoController {
 
     /**
      * 提交订单
+     *
      * @param map
      * @return
      */
@@ -165,8 +166,8 @@ public class OrderInfoController {
         }
 
         HashMap<String, Object> respmap = new HashMap<>();
-        respmap.put("orderID",orderId);
-        respmap.put("uuid",uuid);
+        respmap.put("orderID", orderId);
+        respmap.put("uuid", uuid);
 
         return new Result(flag ? Code.SAVE_OK : Code.SAVE_ERR, respmap, flag ? "保存成功！" : "保存失败！");
     }
@@ -252,13 +253,13 @@ public class OrderInfoController {
 
     @GetMapping("/monthtotalamount")
     public Result getMonthTotalAmount() {
-        Float allOrderTotalAmount = orderInfoService.getMonthTotalAmount();
+        Float MonthTotalAmount = orderInfoService.getMonthTotalAmount();
 
-        return new Result(Code.GET_OK, allOrderTotalAmount, "");
+        return new Result(Code.GET_OK, MonthTotalAmount, "");
     }
 
     @GetMapping("/gradenumber")
-    public Result selectGradeNumber(){
+    public Result selectGradeNumber() {
         List<GradeNumber> gradeNumberList = orderInfoService.selectGradeNumber();
         Integer code = gradeNumberList != null ? Code.GET_OK : Code.GET_ERR;
         String msg = gradeNumberList != null ? "成功" : "数据查询失败，请重试！";
@@ -266,7 +267,7 @@ public class OrderInfoController {
     }
 
     @GetMapping("/orderdetail/{id}")
-    public Result getOrderAndDetail(@PathVariable Integer id){
+    public Result getOrderAndDetail(@PathVariable Integer id) {
         OrderInfo orderInfo = orderInfoService.selectByID(id);
 
         List<RespOrderDetail2> respOrderDetail2s = dishService.selectDishAndOrderDetail(id);
@@ -278,6 +279,8 @@ public class OrderInfoController {
         respOrderInfo2.setCreatedTime(orderInfo.getCreatedTime());
         respOrderInfo2.setTotalAmount(orderInfo.getTotalAmount());
         respOrderInfo2.setOrderDetailList2(respOrderDetail2s);
-        return new Result(Code.GET_OK,respOrderInfo2,"");
+        return new Result(Code.GET_OK, respOrderInfo2, "");
     }
+
+
 }

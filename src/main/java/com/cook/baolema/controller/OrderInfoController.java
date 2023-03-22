@@ -116,13 +116,18 @@ public class OrderInfoController {
 
     }
 
+    /**
+     * 提交订单
+     * @param map
+     * @return
+     */
     @PostMapping("/submit")
     public Result submit(@RequestBody Map<String, Object> map) {
         OrderInfo orderinfo = new OrderInfo();
 
         Integer customerId = (Integer) map.get("customerID");
         Short status = ((Integer) map.get("status")).shortValue();
-        Float totalAmount = ((Double) map.get("totalAmount")).floatValue();
+        Float totalAmount = Float.parseFloat(String.valueOf(map.get("totalAmount")));
 
         orderinfo.setCustomerID(customerId);
         orderinfo.setStatus(status);
@@ -159,7 +164,11 @@ public class OrderInfoController {
             //System.out.println(flag1);
         }
 
-        return new Result(flag ? Code.SAVE_OK : Code.SAVE_ERR, flag, flag ? "保存成功！" : "保存失败！");
+        HashMap<String, Object> respmap = new HashMap<>();
+        respmap.put("orderID",orderId);
+        respmap.put("uuid",uuid);
+
+        return new Result(flag ? Code.SAVE_OK : Code.SAVE_ERR, respmap, flag ? "保存成功！" : "保存失败！");
     }
 
     @PostMapping("/update")

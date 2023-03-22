@@ -18,4 +18,5 @@ public class OrderInfo2 {
     private String userRatings;
     private Float totalAmount;
     private Date createdTime;
+    private String phoneNumber;
 }

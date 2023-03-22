@@ -11,12 +11,21 @@ import java.util.List;
  */
 public interface DishService {
     List<Dish> selectAll();
+
+    List<Dish> selectAllWithout1();
+
     Dish selectByID(Integer id);
+
     boolean deleteByID(Integer id);
+
     boolean update(Dish dish);
+
     boolean save(Dish dish);
+
     List<Dish> selectByCategoryID(Integer categoryID);
+
     Dish selectByName(String name);
+
     List<DishNumber> selectDishNumber();
 
     List<RespOrderDetail2> selectDishAndOrderDetail(Integer id);

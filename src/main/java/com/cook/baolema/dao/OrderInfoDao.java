@@ -71,4 +71,9 @@ public interface OrderInfoDao {
     @Select("select count(*) as orderNumberOfToday,sum(totalAmount) as orderAmountOfToday from tb_order where Year(createdTime)=#{year} and Month(createdTime)=#{month} and Day(createdTime)=#{day}")
     NumberAndAmount selectAmountAndNumberOfToday(@Param("year") String year, @Param("month") String month, @Param("day") String day);
 
+    /**
+     * 根据用户评分返回订单
+     */
+    @Select("select * from tb_order where grade=#{score}")
+    List<OrderInfo> selectByGrade(Integer score);
 }

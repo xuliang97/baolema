@@ -15,7 +15,7 @@ public class OrderInfo implements Serializable, Comparable<OrderInfo> {
     private Integer customerID;
     private Integer chefID;
     private Short status;
-    private String userRatings;
+    private String comment;
     private Float totalAmount;
     private Date createdTime;
     private String uuid;

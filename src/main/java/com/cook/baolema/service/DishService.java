@@ -2,6 +2,7 @@ package com.cook.baolema.service;
 
 import com.cook.baolema.pojo.Dish;
 import com.cook.baolema.respdata.DishNumber;
+import com.cook.baolema.respdata.RespOrderDetail2;
 
 import java.util.List;
 
@@ -17,4 +18,7 @@ public interface DishService {
     List<Dish> selectByCategoryID(Integer categoryID);
     Dish selectByName(String name);
     List<DishNumber> selectDishNumber();
+
+    List<RespOrderDetail2> selectDishAndOrderDetail(Integer id);
+
 }

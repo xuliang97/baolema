@@ -1,0 +1,20 @@
+package com.cook.baolema.respdata;
+
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+import java.util.Date;
+import java.util.List;
+
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
+public class RespOrderInfo2 {
+    private Integer orderId;
+    private Short status;
+    private List<RespOrderDetail2> orderDetailList2;
+    private Float totalAmount;
+    private Date createdTime;
+    private String uuid;
+}

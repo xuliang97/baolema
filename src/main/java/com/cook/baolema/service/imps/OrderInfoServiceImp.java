@@ -90,7 +90,7 @@ public class OrderInfoServiceImp implements OrderInfoService {
             orderInfo2.setCustomerID(oi.getCustomerID());
             orderInfo2.setChefID(oi.getChefID());
             orderInfo2.setStatus(oi.getStatus());
-            orderInfo2.setUserRatings(oi.getComment());
+            orderInfo2.setComment(oi.getComment());
             orderInfo2.setTotalAmount(oi.getTotalAmount());
             orderInfo2.setCreatedTime(oi.getCreatedTime());
             orderInfo2.setStatusMessage(Status2Message.change(oi.getStatus()));

@@ -7,6 +7,8 @@ import com.alipay.easysdk.payment.wap.models.AlipayTradeWapPayResponse;
 import com.cook.baolema.pojo.AliPay;
 import com.cook.baolema.respdata.Code;
 import com.cook.baolema.respdata.Result;
+import com.cook.baolema.service.OrderInfoService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -20,6 +22,8 @@ import java.util.Map;
 @RestController
 @RequestMapping("/alipay")
 public class PayController {
+    @Autowired
+    private OrderInfoService orderInfoService;
 
 
     @GetMapping("/pay") // &subject=xxx&traceNo=xxx&totalAmount=xxx
@@ -65,6 +69,7 @@ public class PayController {
 
                 // 更新订单未已支付
 //                ordersMapper.updateState(tradeNo, "已支付", gmtPayment, alipayTradeNo);
+//                orderInfoService.updateStatusByOrderID(tradeNo)
             }
         }
         return "success";

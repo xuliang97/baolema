@@ -1,5 +1,6 @@
 package com.cook.baolema.respdata;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -15,6 +16,8 @@ public class RespOrderInfo2 {
     private Short status;
     private List<RespOrderDetail2> orderDetailList2;
     private Float totalAmount;
+
+    @JsonFormat(pattern = "yyyy-MM-dd",timezone = "GMT+8")
     private Date createdTime;
     private String uuid;
 }

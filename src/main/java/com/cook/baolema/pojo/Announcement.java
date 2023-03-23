@@ -18,5 +18,7 @@ public class Announcement {
     private Short status;
 
     private String url;
+
+    @JsonFormat(pattern = "yyyy-MM-dd",timezone = "GMT+8")
     private Date createdTime;
 }

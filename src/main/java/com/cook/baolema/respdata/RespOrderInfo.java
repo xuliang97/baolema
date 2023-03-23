@@ -14,4 +14,5 @@ public class RespOrderInfo {
     private Short status;
     private List<RespOrderDetail> orderDetailList;
     private Float totalAmount;
+
 }

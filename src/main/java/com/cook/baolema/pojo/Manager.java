@@ -21,5 +21,6 @@ public class Manager {
     private String profilePhoto;
     private String phoneNumber;
     private String password;
+    @JsonFormat(pattern = "yyyy-MM-dd",timezone = "GMT+8")
     private Date createdTime;
 }

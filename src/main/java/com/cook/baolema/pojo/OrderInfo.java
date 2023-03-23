@@ -17,6 +17,8 @@ public class OrderInfo implements Serializable, Comparable<OrderInfo> {
     private Short status;
     private String userRatings;
     private Float totalAmount;
+
+    @JsonFormat(pattern = "yyyy-MM-dd",timezone = "GMT+8")
     private Date createdTime;
     private String uuid;
     private Integer grade;

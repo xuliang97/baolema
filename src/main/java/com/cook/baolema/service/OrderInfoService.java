@@ -45,6 +45,12 @@ public interface OrderInfoService {
 
     List<HourAndOrderNumber> selectOrderOfHour();
 
+
+    List<OrderInfo3> selectHistoryOrder2(Integer customerID);
+
+
+
     List<goodDish> selectGoodDishes(Integer limit);
+
 
 }

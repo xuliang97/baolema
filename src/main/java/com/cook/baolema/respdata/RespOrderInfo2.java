@@ -17,7 +17,7 @@ public class RespOrderInfo2 {
     private List<RespOrderDetail2> orderDetailList2;
     private Float totalAmount;
 
-    @JsonFormat(pattern = "yyyy-MM-dd",timezone = "GMT+8")
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss",timezone = "GMT+8")
     private Date createdTime;
     private String uuid;
 }

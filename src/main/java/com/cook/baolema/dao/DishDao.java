@@ -3,6 +3,7 @@ package com.cook.baolema.dao;
 import com.cook.baolema.pojo.Dish;
 import com.cook.baolema.respdata.DishNumber;
 import com.cook.baolema.respdata.RespOrderDetail2;
+import com.cook.baolema.respdata.RespOrderDetail4;
 import org.apache.ibatis.annotations.*;
 
 import java.util.List;
@@ -69,4 +70,8 @@ public interface DishDao {
 
     @Select("select dish as dishName,number,description,dishPhoto,dishAmount from tb_dish,tb_order_detail where tb_dish.dishID=tb_order_detail.dishID and orderID=#{id}")
     List<RespOrderDetail2> selectDishAndOrderDetail(Integer id);
+
+    @Select("select dish as dishName,dishPhoto from tb_dish where dishID=#{dishID}")
+    RespOrderDetail4 selectByID2(Integer dishID);
+
 }

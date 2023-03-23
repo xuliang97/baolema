@@ -6,20 +6,19 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.util.Date;
+import java.util.List;
 
+/**
+ * @author 徐亮
+ */
 @Data
-@AllArgsConstructor
 @NoArgsConstructor
-public class OrderInfo2 {
+@AllArgsConstructor
+public class OrderInfo3 {
     private Integer orderID;
-    private Integer customerID;
-    private Integer chefID;
     private Short status;
-    private String statusMessage;
-    private String comment;
-    private Float totalAmount;
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss",timezone = "GMT+8")
-
     private Date createdTime;
-    private String phoneNumber;
+    private Float totalAmount;
+    private List<RespOrderDetail4> orderDetailList;
 }

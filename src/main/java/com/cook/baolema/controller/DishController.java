@@ -51,6 +51,7 @@ public class DishController {
     }
     @PostMapping("/update")
     public Result update(@RequestBody Dish dish){
+        System.out.println(dish);
         boolean flag = dishService.update(dish);
         return new Result(flag ? Code.UPDATE_OK : Code.UPDATE_ERR, flag, flag ? "修改成功！" : "修改失败！");
 

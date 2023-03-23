@@ -17,10 +17,17 @@ import java.util.List;
 public class DishServiceImp implements DishService {
     @Autowired
     private DishDao dishDao;
+
     @Override
     public List<Dish> selectAll() {
         return dishDao.selectAll();
     }
+
+    @Override
+    public List<Dish> selectAllWithout1() {
+        return dishDao.selectAllWithout1();
+    }
+
 
     @Override
     public Dish selectByID(Integer id) {
@@ -29,17 +36,17 @@ public class DishServiceImp implements DishService {
 
     @Override
     public boolean deleteByID(Integer id) {
-        return dishDao.deleteByID(id)>0;
+        return dishDao.deleteByID(id) > 0;
     }
 
     @Override
     public boolean update(Dish dish) {
-        return dishDao.update(dish)>0;
+        return dishDao.update(dish) > 0;
     }
 
     @Override
     public boolean save(Dish dish) {
-        return dishDao.save(dish)>0;
+        return dishDao.save(dish) > 0;
     }
 
     @Override

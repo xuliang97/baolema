@@ -13,15 +13,22 @@ import java.util.List;
 @Mapper
 public interface DishDao {
     /*
-    查询所有菜品
+    查询所有菜品(未删除)
     * */
     @Select("select * from tb_dish where deleted=0")
     List<Dish> selectAll();
 
+    /**
+     * 查询所有菜品(已删除的不会出现)
+     * @param
+     * @return
+     */
+    @Select("select * from tb_dish")
+    List<Dish> selectAllWithout1();
     /*
     按id查询菜品
      */
-    @Select("select * from tb_dish where dishID=#{id} and deleted=0")
+    @Select("select * from tb_dish where dishID=#{id}")
     Dish selectByID(Integer id);
 
     /*

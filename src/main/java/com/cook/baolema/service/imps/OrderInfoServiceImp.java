@@ -1,5 +1,6 @@
 package com.cook.baolema.service.imps;
 
+import com.cook.baolema.dao.CustomerDao;
 import com.cook.baolema.dao.DishDao;
 import com.cook.baolema.dao.OrderDetailDao;
 import com.cook.baolema.dao.OrderInfoDao;
@@ -34,6 +35,9 @@ public class OrderInfoServiceImp implements OrderInfoService {
 
     @Autowired
     private DishDao dishDao;
+
+    @Autowired
+    private CustomerDao customerDao;
 
     @Override
     public List<OrderInfo> selectAll() {
@@ -86,10 +90,13 @@ public class OrderInfoServiceImp implements OrderInfoService {
             orderInfo2.setCustomerID(oi.getCustomerID());
             orderInfo2.setChefID(oi.getChefID());
             orderInfo2.setStatus(oi.getStatus());
-            orderInfo2.setUserRatings(oi.getUserRatings());
+            orderInfo2.setComment(oi.getComment());
             orderInfo2.setTotalAmount(oi.getTotalAmount());
             orderInfo2.setCreatedTime(oi.getCreatedTime());
             orderInfo2.setStatusMessage(Status2Message.change(oi.getStatus()));
+
+            Customer customer = customerDao.selectByID(oi.getCustomerID());
+            orderInfo2.setPhoneNumber(customer.getPhoneNumber());
 
             respOrderDetail3.setOrderInfo2(orderInfo2);
 

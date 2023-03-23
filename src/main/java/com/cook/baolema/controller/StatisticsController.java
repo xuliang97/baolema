@@ -22,7 +22,6 @@ import java.util.List;
 @RestController
 @RequestMapping("/statistics")
 public class StatisticsController {
-
     @Autowired
     private OrderInfoService orderInfoService;
 
@@ -42,7 +41,6 @@ public class StatisticsController {
     @GetMapping
     public Result getStatistics() {
         HashMap<String, Object> map = new HashMap<>();
-
         //日销售额and今日订单
         String[] now = new SimpleDateFormat("yyyy-MM-dd").format(new Date()).toString().split("-");
         NumberAndAmount numberAndAmount = orderInfoService.selectAmountAndNumberOfToday(now[0], now[1], now[2]);

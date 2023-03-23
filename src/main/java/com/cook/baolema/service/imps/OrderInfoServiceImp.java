@@ -156,6 +156,11 @@ public class OrderInfoServiceImp implements OrderInfoService {
         return orderInfoDao.selectOrderOfHour();
     }
 
+    @Override
+    public List<OrderInfo3> selectHistoryOrder2(Integer customerID) {
+        return orderInfoDao.selectHistoryOrder2(customerID);
+    }
+
 
     @Override
     public Float getMonthTotalAmount() {

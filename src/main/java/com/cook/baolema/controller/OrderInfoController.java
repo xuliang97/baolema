@@ -9,6 +9,7 @@ import com.cook.baolema.utils.SortList;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.github.pagehelper.PageInfo;
+import com.sun.org.apache.xpath.internal.operations.Or;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.web.bind.annotation.*;
@@ -280,6 +281,25 @@ public class OrderInfoController {
         respOrderInfo2.setTotalAmount(orderInfo.getTotalAmount());
         respOrderInfo2.setOrderDetailList2(respOrderDetail2s);
         return new Result(Code.GET_OK, respOrderInfo2, "");
+    }
+
+    @GetMapping("/history/{id}")
+    public Result getHistoryOrder(@PathVariable Integer id){
+
+        //根据用户id查询其所有订单信息
+        List<OrderInfo3> orders = orderInfoService.selectHistoryOrder2(id);
+        for(OrderInfo3 order:orders){
+            List<RespOrderDetail4> list = new ArrayList<>();
+            Integer orderID = order.getOrderID();
+            List<OrderDetail> orderDetails = orderDetailService.selectByOrderID(orderID);
+            for(OrderDetail orderDetail:orderDetails) {
+                Integer dishID = orderDetail.getDishID();
+                RespOrderDetail4 respOrderDetail4 = dishService.selectByID2(dishID);
+                list.add(respOrderDetail4);
+            }
+            order.setOrderDetailList(list);
+        }
+        return new Result(Code.GET_OK,orders,"");
     }
 
 

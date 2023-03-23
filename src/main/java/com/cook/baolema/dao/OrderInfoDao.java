@@ -7,6 +7,7 @@ import com.cook.baolema.respdata.GradeNumber;
 import com.cook.baolema.respdata.HourAndOrderNumber;
 import com.cook.baolema.respdata.NumberAndAmount;
 
+import com.cook.baolema.respdata.OrderInfo3;
 import org.apache.ibatis.annotations.*;
 
 import java.util.List;
@@ -83,4 +84,10 @@ public interface OrderInfoDao {
      */
     @Select("select HOUR(createdTime) as hour,count(*) as numberOfOrders from tb_order where createdTime >= date_sub(now(),interval 1 month) group by hour order by hour")
     List<HourAndOrderNumber> selectOrderOfHour();
+
+
+    @Select("select orderID,status,createdTime,totalAmount from tb_order where customerID=#{customerID} order by createdTime desc limit 10")
+    List<OrderInfo3> selectHistoryOrder2(Integer customerID);
+
+
 }

@@ -11,10 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.List;
+import java.util.*;
 
 /**
  * @author 徐亮
@@ -61,11 +58,16 @@ public class StatisticsController {
     @GetMapping("/orderofhour")
     public Result selectOrderOfHour(){
         List<HourAndOrderNumber> hourAndOrderNumbers = orderInfoService.selectOrderOfHour();
-        System.out.println(hourAndOrderNumbers.toString());
         ArrayList<Integer> list = new ArrayList<>();
         for(HourAndOrderNumber hourAndOrderNumber:hourAndOrderNumbers){
             list.add(hourAndOrderNumber.getNumberOfOrders());
         }
+        List<Integer> integers1 = list.subList(0, 12);
+        Integer max1 = Collections.max(integers1);
+        list.add(max1);
+        List<Integer> integers2 = list.subList(12, 24);
+        Integer max2 = Collections.max(integers2);
+        list.add(max2);
         return new Result(Code.GET_OK,list,"");
     }
 }

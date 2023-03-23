@@ -1,9 +1,8 @@
 package com.cook.baolema.controller;
 
-import com.cook.baolema.respdata.Code;
-import com.cook.baolema.respdata.HourAndOrderNumber;
-import com.cook.baolema.respdata.NumberAndAmount;
-import com.cook.baolema.respdata.Result;
+import com.cook.baolema.pojo.Dish;
+import com.cook.baolema.respdata.*;
+import com.cook.baolema.service.DishService;
 import com.cook.baolema.service.OrderInfoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -25,6 +24,9 @@ public class StatisticsController {
 
     @Autowired
     private OrderInfoService orderInfoService;
+
+    @Autowired
+    private DishService dishService;
 
     /*
      * 查询今日的所有订单和金额
@@ -61,13 +63,23 @@ public class StatisticsController {
     }
 
     @GetMapping("/orderofhour")
-    public Result selectOrderOfHour(){
+    public Result selectOrderOfHour() {
         List<HourAndOrderNumber> hourAndOrderNumbers = orderInfoService.selectOrderOfHour();
         System.out.println(hourAndOrderNumbers.toString());
         ArrayList<Integer> list = new ArrayList<>();
-        for(HourAndOrderNumber hourAndOrderNumber:hourAndOrderNumbers){
+        for (HourAndOrderNumber hourAndOrderNumber : hourAndOrderNumbers) {
             list.add(hourAndOrderNumber.getNumberOfOrders());
         }
-        return new Result(Code.GET_OK,list,"");
+        return new Result(Code.GET_OK, list, "");
+    }
+
+    @GetMapping("/getgooddishes")
+    public Result getGoodFiveDishes() {
+        List<goodDish> goodDishes = orderInfoService.selectGoodDishes(5);
+        for (goodDish g : goodDishes) {
+            Dish dish = dishService.selectByID(g.getDishID());
+            g.setDishName(dish.getDish());
+        }
+        return new Result(Code.GET_OK, goodDishes, "");
     }
 }

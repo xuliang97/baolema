@@ -7,6 +7,7 @@ import com.cook.baolema.respdata.GradeNumber;
 import com.cook.baolema.respdata.HourAndOrderNumber;
 import com.cook.baolema.respdata.NumberAndAmount;
 
+import com.cook.baolema.respdata.goodDish;
 import org.apache.ibatis.annotations.*;
 
 import java.util.List;
@@ -64,8 +65,8 @@ public interface OrderInfoDao {
 
 
     /*
-    * 查询今日订单数
-    * */
+     * 查询今日订单数
+     * */
 //    @Select("select count(*) from tb_order where Year(createdTime)=#{year} and Month(createdTime)=#{month} and Day(createdTime)=#{day}}]")
 //    Integer selectNumberOfOrders(@Param("year")String year,@Param("month")String month,@Param("day")String day);
 
@@ -83,4 +84,10 @@ public interface OrderInfoDao {
      */
     @Select("select HOUR(createdTime) as hour,count(*) as numberOfOrders from tb_order where createdTime >= date_sub(now(),interval 1 month) group by hour order by hour")
     List<HourAndOrderNumber> selectOrderOfHour();
+
+    /**
+     *
+     */
+    @Select("SELECT dishID, count(*) AS dishCount FROM tb_order_detail GROUP BY dishID ORDER BY dishCount DESC LIMIT #{limit};")
+    List<goodDish> getGoodDishes(Integer limit);
 }

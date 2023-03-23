@@ -160,7 +160,7 @@ public class OrderInfoServiceImp implements OrderInfoService {
 
     public List<OrderInfo3> selectHistoryOrder2(Integer customerID) {
         return orderInfoDao.selectHistoryOrder2(customerID);
-
+    }
     @Override
     public List<goodDish> selectGoodDishes(Integer limit) {
         return orderInfoDao.getGoodDishes(limit);

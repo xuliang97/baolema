@@ -23,10 +23,10 @@ public interface OrderInfoDao {
 
     //insert into tb_order values (null,5,0,null,73.5,CURRENT_DATE,null,'1324',5)
     //insert into tb_order(orderID,customerID,`status`,userRatings,totalAmount,createdTime,chefID,uuid,grade) values (null,5,0,null,73.5,CURRENT_DATE,null,'132d4',5)
-    @Insert("insert into tb_order(orderID,customerID,status,userRatings,totalAmount,createdTime,chefID,uuid,grade) values (null,#{customerID},#{status},null,#{totalAmount},#{createdTime},#{chefID},#{uuid},#{grade})")
+    @Insert("insert into tb_order(orderID,customerID,status,comment,totalAmount,createdTime,chefID,uuid,grade) values (null,#{customerID},#{status},null,#{totalAmount},#{createdTime},#{chefID},#{uuid},#{grade})")
     int save(OrderInfo newOrderInfo);
 
-    @Update("update tb_order set customerID=#{customerID},status=#{status},userRatings=#{userRatings},totalAmount=#{totalAmount},createdTime=#{createdTime},chefID=#{chefID},grade=#{grade} where orderID=#{orderID}")
+    @Update("update tb_order set customerID=#{customerID},status=#{status},comment=#{comment},totalAmount=#{totalAmount},createdTime=#{createdTime},chefID=#{chefID},grade=#{grade} where orderID=#{orderID}")
     int update(OrderInfo newOrderInfo);
 
     //修改订单评分
@@ -76,4 +76,8 @@ public interface OrderInfoDao {
      */
     @Select("select * from tb_order where grade=#{score}")
     List<OrderInfo> selectByGrade(Integer score);
+
+    /**
+     * 根据
+     */
 }

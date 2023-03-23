@@ -15,7 +15,7 @@ public class OrderInfo2 {
     private Integer chefID;
     private Short status;
     private String statusMessage;
-    private String userRatings;
+    private String comment;
     private Float totalAmount;
     private Date createdTime;
     private String phoneNumber;

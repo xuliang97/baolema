@@ -156,6 +156,11 @@ public class OrderInfoServiceImp implements OrderInfoService {
         return orderInfoDao.selectOrderOfHour();
     }
 
+    @Override
+    public List<goodDish> selectGoodDishes(Integer limit) {
+        return orderInfoDao.getGoodDishes(limit);
+    }
+
 
     @Override
     public Float getMonthTotalAmount() {

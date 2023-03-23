@@ -2,12 +2,8 @@ package com.cook.baolema.service;
 
 import com.cook.baolema.pojo.OrderInfo;
 
-import com.cook.baolema.respdata.GradeNumber;
+import com.cook.baolema.respdata.*;
 
-import com.cook.baolema.respdata.HourAndOrderNumber;
-import com.cook.baolema.respdata.NumberAndAmount;
-
-import com.cook.baolema.respdata.RespOrderDetail3;
 import com.github.pagehelper.PageInfo;
 import org.apache.ibatis.annotations.Param;
 
@@ -49,6 +45,6 @@ public interface OrderInfoService {
 
     List<HourAndOrderNumber> selectOrderOfHour();
 
-
+    List<goodDish> selectGoodDishes(Integer limit);
 
 }

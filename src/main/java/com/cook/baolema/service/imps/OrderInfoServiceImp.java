@@ -6,13 +6,8 @@ import com.cook.baolema.dao.OrderDetailDao;
 import com.cook.baolema.dao.OrderInfoDao;
 import com.cook.baolema.pojo.*;
 
-import com.cook.baolema.respdata.GradeNumber;
+import com.cook.baolema.respdata.*;
 
-import com.cook.baolema.respdata.NumberAndAmount;
-
-import com.cook.baolema.respdata.OrderInfo2;
-import com.cook.baolema.respdata.RespOrderDetail;
-import com.cook.baolema.respdata.RespOrderDetail3;
 import com.cook.baolema.service.OrderInfoService;
 import com.cook.baolema.utils.Status2Message;
 import com.github.pagehelper.Page;
@@ -154,6 +149,11 @@ public class OrderInfoServiceImp implements OrderInfoService {
     public NumberAndAmount selectAmountAndNumberOfToday(String year, String month, String day) {
         return orderInfoDao.selectAmountAndNumberOfToday(year,month,day);
 
+    }
+
+    @Override
+    public List<HourAndOrderNumber> selectOrderOfHour() {
+        return orderInfoDao.selectOrderOfHour();
     }
 
 

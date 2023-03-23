@@ -4,6 +4,7 @@ import com.cook.baolema.pojo.OrderInfo;
 
 import com.cook.baolema.respdata.GradeNumber;
 
+import com.cook.baolema.respdata.HourAndOrderNumber;
 import com.cook.baolema.respdata.NumberAndAmount;
 
 import org.apache.ibatis.annotations.*;
@@ -78,6 +79,8 @@ public interface OrderInfoDao {
     List<OrderInfo> selectByGrade(Integer score);
 
     /**
-     * 根据
+     * 查询上个月订单数（分时段）
      */
+    @Select("select HOUR(createdTime) as hour,count(*) as numberOfOrders from tb_order where createdTime >= date_sub(now(),interval 1 month) group by hour order by hour")
+    List<HourAndOrderNumber> selectOrderOfHour();
 }

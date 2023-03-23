@@ -4,6 +4,7 @@ import com.cook.baolema.pojo.OrderInfo;
 
 import com.cook.baolema.respdata.GradeNumber;
 
+import com.cook.baolema.respdata.HourAndOrderNumber;
 import com.cook.baolema.respdata.NumberAndAmount;
 
 import com.cook.baolema.respdata.RespOrderDetail3;
@@ -46,6 +47,7 @@ public interface OrderInfoService {
 
     NumberAndAmount selectAmountAndNumberOfToday(String year, String month, String day);
 
+    List<HourAndOrderNumber> selectOrderOfHour();
 
 
 

@@ -17,6 +17,7 @@ public class Customer {
     private String phoneNumber;
     private String password;
     private Float accumulatedAmount;
+    @JsonFormat(pattern = "yyyy-MM-dd",timezone = "GMT+8")
     private Date createdTime;
     private Integer rank;
 }

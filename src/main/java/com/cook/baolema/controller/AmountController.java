@@ -30,8 +30,11 @@ public class AmountController {
     public Result getTodayNumberAndAmount() {
         String[] now = new SimpleDateFormat("yyyy-MM-dd").format(new Date()).toString().split("-");
         NumberAndAmount numberAndAmount = orderInfoService.selectAmountAndNumberOfToday(now[0], now[1], now[2]);
-        if (numberAndAmount == null) {
-            return new Result(Code.GET_ERR, null, "请稍后再试");
+
+        if(numberAndAmount == null){
+
+            return new Result(Code.GET_ERR,null,"请稍后再试");
+
         }
         return new Result(Code.GET_OK, numberAndAmount, "");
     }
@@ -56,6 +59,4 @@ public class AmountController {
 
         return new Result(Code.GET_OK, map, "");
     }
-
-
 }

@@ -2,6 +2,7 @@ package com.cook.baolema.controller;
 
 import com.cook.baolema.pojo.*;
 import com.cook.baolema.respdata.*;
+import com.cook.baolema.service.CustomerService;
 import com.cook.baolema.service.DishService;
 import com.cook.baolema.service.OrderDetailService;
 import com.cook.baolema.service.OrderInfoService;
@@ -31,6 +32,9 @@ public class OrderInfoController {
 
     @Resource
     private RedisTemplate<String, OrderInfo> redisTemplate;
+
+    @Autowired
+    private CustomerService customerService;
 
     @PostMapping("add")
     public Result add(OrderInfo orderInfo) {
@@ -142,6 +146,7 @@ public class OrderInfoController {
         //System.out.println(uuid);
         boolean flag = orderInfoService.save(orderinfo);
         //System.out.println(flag);
+        customerService.updateAccumulatedAmountByCustomerID(customerId, totalAmount);
 
 //        //根据customerId查orderId
 //        Integer orderId = orderInfoService.checkOrderID(customerId);

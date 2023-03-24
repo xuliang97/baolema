@@ -21,11 +21,9 @@ import java.util.Date;
 public class RegisterController {
     @Autowired
     private CustomerService customerService;
-
     @GetMapping("/check")
     public Result checkPhoneNumber(HttpServletRequest req){
         String phoneNumber = req.getParameter("phoneNumber");
-        System.out.println(phoneNumber);
         Customer customer = customerService.selectByPhoneNumber(phoneNumber);
         Integer code = customer != null ? Code.PHONENUMBER_EXIST : Code.PHONENUMBER_NOT_EXIST;
         String msg = customer != null ? "手机号已存在！" : "";
@@ -37,6 +35,7 @@ public class RegisterController {
         HttpSession session = req.getSession();
         //获取用户填写的验证码
         String code = req.getParameter("code");
+
         String autocode =(String) session.getAttribute("autocode");
         if(!autocode.equals(code)){
             return new Result(Code.VERIFICATION_CODE_ERR , null,"验证码错误！");
@@ -44,11 +43,13 @@ public class RegisterController {
 
         //
         String phoneNumber = req.getParameter("phoneNumber");
+        String username = req.getParameter("username");
         String password = req.getParameter("password");
         String profilePhoto = req.getParameter("profilePhoto");
         Customer customer = new Customer();
         customer.setPhoneNumber(phoneNumber);
         customer.setPassword(password);
+        customer.setCustomer(username);
         customer.setCreatedTime(new Date());
         if(profilePhoto == null){
             customer.setProfilePhoto("static/customer.jpg");
@@ -62,11 +63,11 @@ public class RegisterController {
     @GetMapping("/getcode")
     public void getCode(HttpServletRequest req){
         int randomNumber = RandomNumberGenerator.getRandomNumber(4);
-        String code=String.valueOf(randomNumber);
-        System.out.println(code);
-        //session中保存后台生成的code,为了将来拿出来与用户提交的进行比较。
+        String code=String.valueOf(randomNumber);//session中保存后台生成的code,为了将来拿出来与用户提交的进行比较。
         String phoneNumber = req.getParameter("phoneNumber");
         HttpSession session = req.getSession();
+        session.setMaxInactiveInterval(5*60);//设置失效时间为5分钟
+
         session.setAttribute("autocode",code);
         //成功返回0，失败返回1
         if(phoneNumber!=null){

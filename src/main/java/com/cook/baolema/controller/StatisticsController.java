@@ -64,13 +64,29 @@ public class StatisticsController {
         for (HourAndOrderNumber hourAndOrderNumber : hourAndOrderNumbers) {
             list.add(hourAndOrderNumber.getNumberOfOrders());
         }
-        List<Integer> integers1 = list.subList(0, 12);
-        Integer max1 = Collections.max(integers1);
-        list.add(max1);
-        List<Integer> integers2 = list.subList(12, 24);
-        Integer max2 = Collections.max(integers2);
-        list.add(max2);
+        System.out.println(list);
+
+        int max = Integer.MIN_VALUE;
+        int maxHour = 0;
+        for(int i = 0;i<12;i++){
+            if(list.get(i) > max){
+                max = list.get(i);
+                maxHour = i;
+            }
+        }
+        list.add(maxHour);
+
+        max = Integer.MIN_VALUE;
+        for(int i = 12;i<24;i++){
+            if(list.get(i) > max){
+                max = list.get(i);
+                maxHour = i;
+            }
+        }
+        list.add(maxHour);
+        System.out.println(list);
         return new Result(Code.GET_OK,list,"");
+
     }
 
     @GetMapping("/getgooddishes")

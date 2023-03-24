@@ -10,10 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.List;
+import java.util.*;
 
 /**
  * @author 徐亮
@@ -63,12 +60,33 @@ public class StatisticsController {
     @GetMapping("/orderofhour")
     public Result selectOrderOfHour() {
         List<HourAndOrderNumber> hourAndOrderNumbers = orderInfoService.selectOrderOfHour();
-        System.out.println(hourAndOrderNumbers.toString());
         ArrayList<Integer> list = new ArrayList<>();
         for (HourAndOrderNumber hourAndOrderNumber : hourAndOrderNumbers) {
             list.add(hourAndOrderNumber.getNumberOfOrders());
         }
-        return new Result(Code.GET_OK, list, "");
+        System.out.println(list);
+
+        int max = Integer.MIN_VALUE;
+        int maxHour = 0;
+        for(int i = 0;i<12;i++){
+            if(list.get(i) > max){
+                max = list.get(i);
+                maxHour = i;
+            }
+        }
+        list.add(maxHour);
+
+        max = Integer.MIN_VALUE;
+        for(int i = 12;i<24;i++){
+            if(list.get(i) > max){
+                max = list.get(i);
+                maxHour = i;
+            }
+        }
+        list.add(maxHour);
+        System.out.println(list);
+        return new Result(Code.GET_OK,list,"");
+
     }
 
     @GetMapping("/getgooddishes")

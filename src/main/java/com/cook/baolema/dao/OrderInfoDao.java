@@ -100,6 +100,10 @@ public interface OrderInfoDao {
      *
      */
     @Select("SELECT dishID, count(*) AS dishCount FROM tb_order_detail GROUP BY dishID ORDER BY dishCount DESC LIMIT #{limit};")
+
     List<goodDish> getGoodDishes(Integer limit);
+
+    @Select("select count(*) from tb_order where customerID=#{customerID}")
+    int selectHistoryOrderNumberByCustomerID(Integer customerID);
 
 }

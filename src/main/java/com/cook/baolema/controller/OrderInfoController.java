@@ -302,5 +302,11 @@ public class OrderInfoController {
         return new Result(Code.GET_OK,orders,"");
     }
 
+    @GetMapping("/history/ordernumber/{id}")
+    public Result selectHistoryOrderNumberByCustomerID(@PathVariable Integer id){
+        int i = orderInfoService.selectHistoryOrderNumberByCustomerID(id);
+        return new Result(Code.GET_OK,i,"");
+    }
+
 
 }

@@ -52,5 +52,8 @@ public interface OrderInfoService {
 
     List<goodDish> selectGoodDishes(Integer limit);
 
+    int selectHistoryOrderNumberByCustomerID(Integer customerID);
+
+
 
 }

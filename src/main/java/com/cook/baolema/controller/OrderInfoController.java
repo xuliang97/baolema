@@ -284,22 +284,29 @@ public class OrderInfoController {
     }
 
     @GetMapping("/history/{id}")
-    public Result getHistoryOrder(@PathVariable Integer id){
+    public Result getHistoryOrder(@PathVariable Integer id) {
 
         //根据用户id查询其所有订单信息
         List<OrderInfo3> orders = orderInfoService.selectHistoryOrder2(id);
-        for(OrderInfo3 order:orders){
+        for (OrderInfo3 order : orders) {
             List<RespOrderDetail4> list = new ArrayList<>();
             Integer orderID = order.getOrderID();
             List<OrderDetail> orderDetails = orderDetailService.selectByOrderID(orderID);
-            for(OrderDetail orderDetail:orderDetails) {
+            for (OrderDetail orderDetail : orderDetails) {
                 Integer dishID = orderDetail.getDishID();
                 RespOrderDetail4 respOrderDetail4 = dishService.selectByID2(dishID);
                 list.add(respOrderDetail4);
             }
             order.setOrderDetailList(list);
         }
-        return new Result(Code.GET_OK,orders,"");
+        return new Result(Code.GET_OK, orders, "");
+    }
+
+    @PostMapping("/updatecomment")
+    public Result updateComment(Integer orderID, String comment) {
+        boolean flag = orderInfoService.updateComment(orderID, comment);
+        Integer code = flag ? Code.GET_OK : Code.GET_ERR;
+        return new Result(code, flag, "");
     }
 
     @GetMapping("/history/ordernumber/{id}")

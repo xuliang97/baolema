@@ -50,6 +50,9 @@ public interface OrderInfoDao {
     @Update("update tb_order set status=#{status} where orderID=#{orderID}")
     int updateStatusByOrderID(Integer orderID, short status);
 
+    @Update("update tb_order set comment=#{comment} where orderID=#{orderID}")
+    int updateCommentByOrderID(Integer orderID,String comment);
+
     @Select("select * from tb_order where customerID=#{customerID}")
     List<OrderInfo> selectHistoryOrder(Integer customerID);
 

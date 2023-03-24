@@ -48,6 +48,8 @@ public interface OrderInfoService {
 
     List<OrderInfo3> selectHistoryOrder2(Integer customerID);
 
+    boolean updateComment(Integer orderID, String comment);
+
 
 
     List<goodDish> selectGoodDishes(Integer limit);

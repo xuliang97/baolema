@@ -161,6 +161,12 @@ public class OrderInfoServiceImp implements OrderInfoService {
     public List<OrderInfo3> selectHistoryOrder2(Integer customerID) {
         return orderInfoDao.selectHistoryOrder2(customerID);
     }
+
+    @Override
+    public boolean updateComment(Integer orderID, String comment) {
+        return orderInfoDao.updateCommentByOrderID(orderID, comment) > 0;
+    }
+
     @Override
     public List<goodDish> selectGoodDishes(Integer limit) {
         return orderInfoDao.getGoodDishes(limit);

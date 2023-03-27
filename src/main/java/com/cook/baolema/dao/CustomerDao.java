@@ -2,6 +2,7 @@ package com.cook.baolema.dao;
 
 import com.cook.baolema.pojo.Customer;
 import com.cook.baolema.pojo.Manager;
+import com.cook.baolema.respdata.RankAndNumber;
 import org.apache.ibatis.annotations.*;
 
 import java.util.List;
@@ -49,6 +50,6 @@ public interface CustomerDao {
     @Update("update tb_customer set accumulatedAmount = accumulatedAmount + #{amount} where customerID=#{customerID}")
     int updateAccumulatedAmountByCustomerID(Integer customerID, Float amount);
 
-
-
+    @Select("select rank,count(*) as number from tb_customer group by rank order by rank")
+     List<RankAndNumber> selectRank();
 }

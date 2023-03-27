@@ -1,6 +1,7 @@
 package com.cook.baolema.service;
 
 import com.cook.baolema.pojo.Customer;
+import com.cook.baolema.respdata.RankAndNumber;
 import com.github.pagehelper.*;
 
 
@@ -28,4 +29,7 @@ public interface CustomerService {
     boolean updateRankByCustomerID(Integer customerID, Integer rank);
 
     boolean updateAccumulatedAmountByCustomerID(Integer customerID, Float amount);
+
+    List<RankAndNumber> selectRank();
+
 }

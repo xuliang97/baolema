@@ -2,6 +2,7 @@ package com.cook.baolema.service.imps;
 
 import com.cook.baolema.dao.CustomerDao;
 import com.cook.baolema.pojo.Customer;
+import com.cook.baolema.respdata.RankAndNumber;
 import com.cook.baolema.service.CustomerService;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
@@ -71,6 +72,11 @@ public class CustomerServiceImp implements CustomerService {
     @Override
     public boolean updateAccumulatedAmountByCustomerID(Integer customerID, Float amount) {
         return customerDao.updateAccumulatedAmountByCustomerID(customerID, amount) > 0;
+    }
+
+    @Override
+    public List<RankAndNumber> selectRank() {
+        return customerDao.selectRank();
     }
 
 }

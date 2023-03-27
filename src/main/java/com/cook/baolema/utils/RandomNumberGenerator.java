@@ -33,6 +33,6 @@ public class RandomNumberGenerator {
     }
 
     public static void main(String[] args) {
-        System.out.println(getTel());
+        System.out.println(getRandomNumber(4));
     }
 }

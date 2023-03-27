@@ -29,10 +29,12 @@ public class RegisterController {
         String msg = customer != null ? "手机号已存在！" : "";
         return new Result(code, null, msg);
     }
-    @PostMapping
+    @GetMapping
     public Result Register(HttpServletRequest req){
+
         //先核验验证码
         HttpSession session = req.getSession();
+        System.out.println(session);
         //获取用户填写的验证码
         String code = req.getParameter("code");
 
@@ -46,6 +48,7 @@ public class RegisterController {
         String username = req.getParameter("username");
         String password = req.getParameter("password");
         String profilePhoto = req.getParameter("profilePhoto");
+        System.out.println(profilePhoto);
         Customer customer = new Customer();
         customer.setPhoneNumber(phoneNumber);
         customer.setPassword(password);
@@ -66,6 +69,7 @@ public class RegisterController {
         String code=String.valueOf(randomNumber);//session中保存后台生成的code,为了将来拿出来与用户提交的进行比较。
         String phoneNumber = req.getParameter("phoneNumber");
         HttpSession session = req.getSession();
+        System.out.println(session);
         session.setMaxInactiveInterval(5*60);//设置失效时间为5分钟
 
         session.setAttribute("autocode",code);

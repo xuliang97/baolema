@@ -140,20 +140,32 @@ public class OrderInfoController {
         orderinfo.setTotalAmount(totalAmount);
         orderinfo.setCreatedTime(new Date());
 
+
         //创建uuid
         String uuid = UUID.randomUUID().toString().replace("-", "");
         orderinfo.setUuid(uuid);
-        //System.out.println(uuid);
         boolean flag = orderInfoService.save(orderinfo);
-        //System.out.println(flag);
-        customerService.updateAccumulatedAmountByCustomerID(customerId, totalAmount);
+
+        if(flag){
+            customerService.updateAccumulatedAmountByCustomerID(customerId, totalAmount);
+            Customer customer = customerService.selectByID(customerId);
+            Float accumulatedAmount = customer.getAccumulatedAmount();
+            Integer rank = 0;
+            if(accumulatedAmount < 500){
+                rank = 0;
+            }else if(accumulatedAmount < 1000){
+                rank = 1;
+            }else{
+                rank = 2;
+            }
+            customerService.updateRankByCustomerID(customerId,rank);
+        }
 
 //        //根据customerId查orderId
 //        Integer orderId = orderInfoService.checkOrderID(customerId);
 
         //根据uuid查orderID
         Integer orderId = orderInfoService.checkOrderIDByuuid(uuid);
-
         ObjectMapper mapper = new ObjectMapper();
         List<OrderDetail> orderDetailList1 = (List<OrderDetail>) map.get("orderDetailList");
         List<OrderDetail> orderDetailList2 = mapper.convertValue(orderDetailList1, new TypeReference<List<OrderDetail>>() {
@@ -161,7 +173,6 @@ public class OrderInfoController {
 
         for (OrderDetail od : orderDetailList2) {
             OrderDetail orderDetail = new OrderDetail();
-
             orderDetail.setOrderID(orderId);
             orderDetail.setNumber(od.getNumber());
             orderDetail.setDishAmount(od.getDishAmount());

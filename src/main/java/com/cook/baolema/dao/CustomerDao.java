@@ -49,4 +49,6 @@ public interface CustomerDao {
     @Update("update tb_customer set accumulatedAmount = accumulatedAmount + #{amount} where customerID=#{customerID}")
     int updateAccumulatedAmountByCustomerID(Integer customerID, Float amount);
 
+
+
 }

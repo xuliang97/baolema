@@ -2,6 +2,7 @@ package com.cook.baolema.controller;
 
 import com.cook.baolema.respdata.Code;
 import com.cook.baolema.pojo.Customer;
+import com.cook.baolema.respdata.RankAndNumber;
 import com.cook.baolema.respdata.Result;
 import com.cook.baolema.service.CustomerService;
 import com.github.pagehelper.*;
@@ -80,6 +81,12 @@ public class CustomerController {
         Integer code = customer != null ? Code.GET_OK : Code.GET_ERR;
         String msg = customer != null ? "" : "数据查询失败，请重试！";
         return new Result(code,customer,msg);
+    }
+
+    @GetMapping("/rank")
+    public Result selectRank(){
+        List<RankAndNumber> rankAndNumbers = customerService.selectRank();
+        return new Result(rankAndNumbers != null?Code.GET_OK:Code.GET_ERR,rankAndNumbers,rankAndNumbers != null?"":"查询失败");
     }
 
 

@@ -146,19 +146,19 @@ public class OrderInfoController {
         orderinfo.setUuid(uuid);
         boolean flag = orderInfoService.save(orderinfo);
 
-        if(flag){
+        if (flag) {
             customerService.updateAccumulatedAmountByCustomerID(customerId, totalAmount);
             Customer customer = customerService.selectByID(customerId);
             Float accumulatedAmount = customer.getAccumulatedAmount();
             Integer rank = 0;
-            if(accumulatedAmount < 500){
+            if (accumulatedAmount < 500) {
                 rank = 0;
-            }else if(accumulatedAmount < 1000){
+            } else if (accumulatedAmount < 1000) {
                 rank = 1;
-            }else{
+            } else {
                 rank = 2;
             }
-            customerService.updateRankByCustomerID(customerId,rank);
+            customerService.updateRankByCustomerID(customerId, rank);
         }
 
 //        //根据customerId查orderId
@@ -211,10 +211,9 @@ public class OrderInfoController {
         return new Result(flag ? Code.DELETE_OK : Code.DELETE_ERR, flag, flag ? "删除成功！" : "删除失败！");
     }
 
-    @GetMapping("/allorder/{pageNum}/{pageSize}") //add resp2
-    public Result selectAllByPage(@PathVariable Integer pageNum, @PathVariable Integer pageSize) {
-        PageInfo<RespOrderDetail3> respOrderDetail3PageInfo = orderInfoService.selectAllByPage(pageNum, pageSize);
-
+    @GetMapping("/allorder/{pageNum}/{pageSize}/{grade}") //add resp2
+    public Result selectAllByPage(@PathVariable Integer pageNum, @PathVariable Integer pageSize, @PathVariable Integer grade) {
+        PageInfo<RespOrderDetail3> respOrderDetail3PageInfo = orderInfoService.selectAllByPage(pageNum, pageSize,grade);
         Integer code = respOrderDetail3PageInfo != null ? Code.GET_OK : Code.GET_ERR;
         String msg = respOrderDetail3PageInfo != null ? "" : "数据查询失败，请重试！";
 
@@ -326,9 +325,9 @@ public class OrderInfoController {
     }
 
     @GetMapping("/history/ordernumber/{id}")
-    public Result selectHistoryOrderNumberByCustomerID(@PathVariable Integer id){
+    public Result selectHistoryOrderNumberByCustomerID(@PathVariable Integer id) {
         int i = orderInfoService.selectHistoryOrderNumberByCustomerID(id);
-        return new Result(Code.GET_OK,i,"");
+        return new Result(Code.GET_OK, i, "");
     }
 
 

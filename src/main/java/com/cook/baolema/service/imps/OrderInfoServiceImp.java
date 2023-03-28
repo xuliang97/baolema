@@ -70,11 +70,14 @@ public class OrderInfoServiceImp implements OrderInfoService {
     }
 
     @Override
-    public PageInfo<RespOrderDetail3> selectAllByPage(int pageNum, int pageSize) {
+    public PageInfo<RespOrderDetail3> selectAllByPage(int pageNum, int pageSize, int grade) {
         Page page = PageHelper.startPage(pageNum, pageSize);
-
-        List<OrderInfo> orderInfos = orderInfoDao.selectAll();
-
+        List<OrderInfo> orderInfos = null;
+        if (grade == 0) {
+            orderInfos = orderInfoDao.selectAll();
+        } else {
+            orderInfos = orderInfoDao.selectByGrade(grade);
+        }
         List<RespOrderDetail3> respOrderDetail3List = new ArrayList<>();
 
         for (OrderInfo oi : orderInfos) {
@@ -147,7 +150,7 @@ public class OrderInfoServiceImp implements OrderInfoService {
 
     @Override
     public NumberAndAmount selectAmountAndNumberOfToday(String year, String month, String day) {
-        return orderInfoDao.selectAmountAndNumberOfToday(year,month,day);
+        return orderInfoDao.selectAmountAndNumberOfToday(year, month, day);
 
     }
 

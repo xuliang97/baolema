@@ -24,7 +24,7 @@ public interface OrderInfoService {
 
     boolean updateStatusByOrderID(Integer orderID, short status);
 
-    PageInfo<RespOrderDetail3> selectAllByPage(int pageNum, int pageSize);
+    PageInfo<RespOrderDetail3> selectAllByPage(int pageNum, int pageSize, int grade);
 
     Integer checkOrderID(Integer customerID);
 
@@ -51,11 +51,9 @@ public interface OrderInfoService {
     boolean updateComment(Integer orderID, String comment);
 
 
-
     List<goodDish> selectGoodDishes(Integer limit);
 
     int selectHistoryOrderNumberByCustomerID(Integer customerID);
-
 
 
 }
